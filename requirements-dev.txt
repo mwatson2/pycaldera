@@ -1,3 +1,9 @@
-black==24.8.0
-identify>=1.4.20
-pre-commit
+black>=24.8.0
+isort>=5.12.0
+mypy>=1.0.0
+pre-commit>=3.5.0
+pylint>=2.17.0
+pytest>=7.0.0
+pytest-aiohttp>=1.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0

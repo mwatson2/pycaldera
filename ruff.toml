@@ -1,0 +1,35 @@
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+# Assume Python 3.8
+target-version = "py38"
+
+# Include all Python files, including tests
+include = ["pycaldera/**/*.py", "tests/**/*.py"]
+
+[lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+select = ["E", "F", "W", "I001"]
+ignore = ["E402", "E203"]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Ignore type-ignore comments in tests
+[lint.per-file-ignores]
+"tests/*" = ["TCH004"]  # Ignore "Use `typing.TYPE_CHECKING` to avoid runtime import of `X`"
+
+[format]
+# Use double quotes for strings.
+quote-style = "double"
+
+# Indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Skip docstring formatting
+docstring-code-format = false

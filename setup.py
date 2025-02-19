@@ -4,9 +4,10 @@ import glob
 import os
 import sys
 from shutil import rmtree
+from typing import Any
 
-from setuptools import Command, find_packages, setup
-from setuptools.command.test import test as TestCommand
+from setuptools import Command, find_packages, setup  # type: ignore[import]
+from setuptools.command.test import test as TestCommand  # type: ignore[import]
 
 
 def read(fname):
@@ -50,8 +51,8 @@ if extras_require:
 # is being run during the `python setup.py install` step, before requirements
 # are installed.
 # https://packaging.python.org/guides/single-sourcing-package-version/
-meta = {}
-exec(read("package_name/__meta__.py"), meta)
+meta: dict[str, Any] = {}
+exec(read("pycaldera/__meta__.py"), meta)
 
 
 # Import the README and use it as the long-description.
@@ -102,7 +103,7 @@ class UploadCommand(Command):
     """Support setup.py upload."""
 
     description = "Build and publish the package."
-    user_options = []
+    user_options: list[str] = []
 
     @staticmethod
     def status(s):
