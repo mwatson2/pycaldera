@@ -8,5 +8,5 @@ version = "0.1.dev0"
 author = "Mark Watson"
 author_email = "markwatson@cantab.net"
 description = "Unofficial Python client for Caldera Spa API"  # One-liner
-url = ""  # your project homepage
+url = "https://github.com/mwatson2/pycaldera"  # Add your GitHub repo URL
 license = "MIT"  # See https://choosealicense.com

@@ -12,7 +12,7 @@ pip install pycaldera
 
 ```python
 import asyncio
-from pycaldera import AsyncCalderaClient
+from pycaldera import AsyncCalderaClient, PUMP_OFF, PUMP_LOW, PUMP_HIGH
 
 
 async def main():
@@ -27,7 +27,7 @@ async def main():
 
         # Control the spa
         await spa.set_temperature(102)  # Set temperature to 102°F
-        await spa.set_pump(1, 2)  # Set pump 1 to high speed
+        await spa.set_pump(1, PUMP_HIGH)  # Set pump 1 to high speed
         await spa.set_lights(True)  # Turn on the lights
 
 
@@ -38,57 +38,63 @@ asyncio.run(main())
 
 ### AsyncCalderaClient
 
-Main client class for interacting with the spa.
+Main client class for interacting with the spa. All operations must be performed within an async context manager:
 
 ```python
-client = AsyncCalderaClient(
+async with AsyncCalderaClient(
     email="email@example.com",
     password="password",
     timeout=10.0,  # Optional: request timeout in seconds
     debug=False,  # Optional: enable debug logging
-)
+) as spa:
+    # All spa operations must be inside this block
+    await spa.get_spa_status()
+    await spa.set_temperature(102)
+    # etc...
 ```
 
 ### Temperature Control
 
 ```python
-# Set temperature (80-104°F or 26.5-40°C)
-await spa.set_temperature(102)  # Fahrenheit
-await spa.set_temperature(39, "C")  # Celsius
+async with spa as client:
+    # Set temperature (80-104°F or 26.5-40°C)
+    await client.set_temperature(102)  # Fahrenheit
+    await client.set_temperature(39, "C")  # Celsius
 ```
 
 ### Pump Control
 
 ```python
-from pycaldera import AsyncCalderaClient, PUMP_OFF, PUMP_LOW, PUMP_HIGH
-
-# Set pump speed
-await spa.set_pump(1, PUMP_HIGH)  # Set pump 1 to high speed
-await spa.set_pump(2, PUMP_LOW)  # Set pump 2 to low speed
-await spa.set_pump(3, PUMP_OFF)  # Turn off pump 3
+async with spa as client:
+    # Set pump speed
+    await client.set_pump(1, PUMP_HIGH)  # Set pump 1 to high speed
+    await client.set_pump(2, PUMP_LOW)  # Set pump 2 to low speed
+    await client.set_pump(3, PUMP_OFF)  # Turn off pump 3
 ```
 
 ### Light Control
 
 ```python
-await spa.set_lights(True)  # Turn lights on
-await spa.set_lights(False)  # Turn lights off
+async with spa as client:
+    await client.set_lights(True)  # Turn lights on
+    await client.set_lights(False)  # Turn lights off
 ```
 
 ### Status & Settings
 
 ```python
-# Get basic spa status
-status = await spa.get_spa_status()
-print(f"Spa name: {status.spaName}")
-print(f"Current temp: {status.ctrl_head_water_temperature}°F")
-print(f"Online: {status.status == 'ONLINE'}")
+async with spa as client:
+    # Get basic spa status
+    status = await client.get_spa_status()
+    print(f"Spa name: {status.spaName}")
+    print(f"Current temp: {status.ctrl_head_water_temperature}°F")
+    print(f"Online: {status.status == 'ONLINE'}")
 
-# Get detailed live settings
-settings = await spa.get_live_settings()
-print(f"Target temp: {settings.ctrl_head_set_temperature}°F")
-print(f"Pump 1 speed: {settings.usr_set_pump1_speed}")
-print(f"Lights on: {settings.usr_set_light_state}")
+    # Get detailed live settings
+    settings = await client.get_live_settings()
+    print(f"Target temp: {settings.ctrl_head_set_temperature}°F")
+    print(f"Pump 1 speed: {settings.usr_set_pump1_speed}")
+    print(f"Lights on: {settings.usr_set_light_state}")
 ```
 
 ## Development
@@ -115,3 +121,7 @@ The pre-commit hooks will run automatically on git commit, checking:
 - Linting (pylint, ruff)
 - YAML/TOML syntax
 - Trailing whitespace and file endings
+
+## License
+
+MIT License - see LICENSE file for details.

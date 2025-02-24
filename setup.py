@@ -60,29 +60,8 @@ exec(read("pycaldera/__meta__.py"), meta)
 possible_readme_names = ["README.rst", "README.md", "README.txt", "README"]
 
 # Handle turning a README file into long_description
-long_description = meta["description"]
-readme_fname = ""
-for fname in possible_readme_names:
-    try:
-        long_description = read(fname)
-    except IOError:
-        # doesn't exist
-        continue
-    else:
-        # exists
-        readme_fname = fname
-        break
-
-# Infer the content type of the README file from its extension.
-# If the contents of your README do not match its extension, manually assign
-# long_description_content_type to the appropriate value.
-readme_ext = os.path.splitext(readme_fname)[1]
-if readme_ext.lower() == ".rst":
-    long_description_content_type = "text/x-rst"
-elif readme_ext.lower() == ".md":
-    long_description_content_type = "text/markdown"
-else:
-    long_description_content_type = "text/plain"
+long_description = read("README.md")
+long_description_content_type = "text/markdown"
 
 
 class PyTest(TestCommand):
