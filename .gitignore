@@ -170,6 +170,9 @@ dmypy.json
 # Weights & Biases
 wandb/
 
+# Reference materials
+notes/
+
 
 ##---------------------------------------------------
 # Windows default .gitignore

@@ -1,6 +1,6 @@
 """Data models for Caldera Spa API."""
 
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -10,7 +10,7 @@ class AuthResponse(BaseModel):
 
     statusCode: int
     message: str
-    data: dict
+    data: Dict
     timeStamp: str
     nTime: str
 
@@ -79,7 +79,7 @@ class LiveSettings(BaseModel):
     name: str
     description: str
     thingTemplate: str
-    tags: list[dict[str, str]]
+    tags: List[Dict[str, str]]
 
 
 class LiveSettingsFieldDefinition(BaseModel):
@@ -89,20 +89,20 @@ class LiveSettingsFieldDefinition(BaseModel):
     description: str = ""
     baseType: str
     ordinal: int
-    aspects: dict[str, Any]
+    aspects: Dict[str, Any]
 
 
 class LiveSettingsDataShape(BaseModel):
     """Shape of the live settings data."""
 
-    fieldDefinitions: dict[str, LiveSettingsFieldDefinition]
+    fieldDefinitions: Dict[str, LiveSettingsFieldDefinition]
 
 
 class LiveSettingsData(BaseModel):
     """Parsed live settings data structure."""
 
     dataShape: LiveSettingsDataShape
-    rows: list[LiveSettings]
+    rows: List[LiveSettings]
 
 
 class LiveSettingsResponse(BaseModel):
@@ -193,20 +193,20 @@ class DeviceConnectionRow(BaseModel):
 class ThingWorxResponse(BaseModel):
     """Generic ThingWorx response structure."""
 
-    dataShape: dict  # Keep as dict since it's metadata we don't need
-    rows: list
+    dataShape: Dict  # Keep as Dict since it's metadata we don't need
+    rows: List
 
 
 class ThingWorxLiveSettings(ThingWorxResponse):
     """Live settings from ThingWorx system."""
 
-    rows: list[LiveSettings]  # Override rows type for live settings
+    rows: List[LiveSettings]  # Override rows type for live settings
 
 
 class ThingWorxDeviceConnection(ThingWorxResponse):
     """Device connection status from ThingWorx system."""
 
-    rows: list[DeviceConnectionRow]  # Override rows type for device connection
+    rows: List[DeviceConnectionRow]  # Override rows type for device connection
 
 
 class IsConnectedData(BaseModel):
@@ -246,7 +246,7 @@ class SpaResponseDato(BaseModel):
 class ResponseData(BaseModel):
     """Data field for spa status response."""
 
-    responseDto: list[SpaResponseDato]
+    responseDto: List[SpaResponseDato]
     unReadNotificationCount: int
 
 
@@ -256,6 +256,6 @@ class SpaStatusResponse(BaseModel):
     statusCode: int
     message: str
     data: ResponseData
-    oldUserData: list
+    oldUserData: List
     timeStamp: str
     nTime: str

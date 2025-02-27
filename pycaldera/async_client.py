@@ -3,7 +3,7 @@
 import json
 import logging
 from asyncio import AbstractEventLoop
-from typing import Any, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import aiohttp
 import pydantic
@@ -95,7 +95,7 @@ class AsyncCalderaClient:
 
     async def _make_request(
         self, method: str, endpoint: str, **kwargs
-    ) -> tuple[dict[str, Any], dict[str, str]]:
+    ) -> Tuple[Dict[str, Any], Dict[str, str]]:
         """Make an async HTTP request to the API.
 
         Returns:

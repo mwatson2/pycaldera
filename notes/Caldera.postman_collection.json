@@ -1,0 +1,991 @@
+{
+	"info": {
+		"_postman_id": "89b3b154-70d4-43b7-8eaf-4b6df71833b6",
+		"name": "Caldera",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34866595"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"j92a#psW$5Dr#T3d\",\n    \"mobileDeviceToken\": \"cAgQXTsowUvjjSTdDA4sEh:APA91bHGZ6SjQIiBJSVrF8dTZ4dG0-Pnxl_HxiRlIbDrvFvRFd-BYuOdQpID5lMcE3R29Q2xTtSPHpDRo0uQCOIHiRFX5hvrtWD-FfoNWlz7NZKshjr0J6Fd2dn8rnyHMWGZ09Q8ZmPJ\",\n    \"emailAddress\": \"markwatson@cantab.net\",\n    \"osType\": \"17.4.1\",\n    \"location\": \"\",\n    \"deviceType\": \"IOS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/auth/login",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"j92a#psW$5Dr#T3d\",\n    \"mobileDeviceToken\": \"cAgQXTsowUvjjSTdDA4sEh:APA91bHGZ6SjQIiBJSVrF8dTZ4dG0-Pnxl_HxiRlIbDrvFvRFd-BYuOdQpID5lMcE3R29Q2xTtSPHpDRo0uQCOIHiRFX5hvrtWD-FfoNWlz7NZKshjr0J6Fd2dn8rnyHMWGZ09Q8ZmPJ\",\n    \"emailAddress\": \"markwatson@cantab.net\",\n    \"osType\": \"17.4.1\",\n    \"location\": \"\",\n    \"deviceType\": \"IOS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/auth/login",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:09:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ApplicationGatewayAffinityCORS=18bbfc39fa81c763a2f0e0f7d32e57f7; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ApplicationGatewayAffinity=18bbfc39fa81c763a2f0e0f7d32e57f7; Path=/"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Authorization",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJrd2F0c29uQGNhbnRhYi5uZXQiLCJuYW1lIjoiTWFyayIsImV4cCI6MTcxODA2MDk4NiwidXNlcklkIjoxOTMwLCJpYXQiOjE3MTU0Njg5ODZ9.h0VPTRrnGHC04ngC2k6NxyjmeYrkQo72YUsbprKLO-fM1t9nrKkfipDTHJiFrUXYfXI-03Lcg_UOQiZQmCWiHg"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Login Successfull\",\n    \"data\": {\n        \"userId\": 1930,\n        \"firstName\": \"Mark\",\n        \"lastName\": \"Watson\",\n        \"emailAddress\": \"markwatson@cantab.net\",\n        \"status\": \"EMAIL_VERIFIED\",\n        \"socialType\": \"NONE\",\n        \"spaOwnerStatus\": \"NONE\",\n        \"spaSetUpEnum\": \"NOT_SETUPED\",\n        \"mobileDeviceToken\": \"cAgQXTsowUvjjSTdDA4sEh:APA91bHGZ6SjQIiBJSVrF8dTZ4dG0-Pnxl_HxiRlIbDrvFvRFd-BYuOdQpID5lMcE3R29Q2xTtSPHpDRo0uQCOIHiRFX5hvrtWD-FfoNWlz7NZKshjr0J6Fd2dn8rnyHMWGZ09Q8ZmPJ\",\n        \"oldUserData\": [],\n        \"tncAccepted\": true,\n        \"createdBy\": \"Mark\",\n        \"updatedBy\": \"Mark\",\n        \"createdAt\": \"2024-01-02T16:22:24.473\",\n        \"updatedAt\": \"2024-05-11T16:09:46.213\"\n    },\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T16:09:46.219\",\n    \"nTime\": \"2024-05-11T23:09:46.219\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/spa/my-spas",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"spa",
+						"my-spas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://connectedspa.watkinsmfg.com/connextion/spa/my-spas",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/spa/my-spas",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"spa",
+								"my-spas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:12:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"User's spa fetched successfully\",\n    \"data\": {\n        \"responseDto\": [\n            {\n                \"spaId\": 708,\n                \"spaName\": \"Reunion\",\n                \"spaSerialNumber\": \"REU21D4211094\",\n                \"hnaNumber\": \"00000000000000000004F3FFFF69BB2F\",\n                \"snaNumber\": \"0013A20041A60739\",\n                \"output\": null,\n                \"address\": \"37888 Breaker Reach\",\n                \"state\": \"CA\",\n                \"country\": \"United States\",\n                \"postalCode\": \"95497\",\n                \"status\": \"PARTIALY_SETUPED\",\n                \"spaSettings\": {\n                    \"id\": 1004,\n                    \"thingWorxData\": \"{\\\"Control Box\\\":\\\"Eagle\\\",\\\"Circulation Pump\\\":\\\"true\\\",\\\"SPA_Details\\\":{\\\"Brand\\\":\\\"Caldera\\\",\\\"Series\\\":\\\"PARADISE\\\",\\\"Model\\\":\\\"REUNION\\\"},\\\"JET PUMPS\\\":{\\\"Jet_Pump_1\\\":\\\"1\\\",\\\"Jet_Pump_3\\\":\\\"N\\\",\\\"Jet_Pump_2\\\":\\\"2\\\"},\\\"Summer_Timer\\\":\\\"true\\\",\\\"Lights\\\":{\\\"Lights\\\":\\\"true\\\",\\\"Bartop\\\":\\\"false\\\",\\\"Dimming\\\":\\\"3 Steps\\\",\\\"Underwater_Main_Light\\\":\\\"false\\\",\\\"Water_Feature\\\":\\\"true\\\",\\\"Lighting_Type\\\":\\\"Points-of-Light\\\",\\\"Exterior_Light\\\":\\\"false\\\"},\\\"OPTIONAL FEATURES\\\":{\\\"Audio\\\":\\\"false\\\",\\\"CoolZoneTM\\\":\\\"false\\\",\\\"FreshWater Salt SystemTM\\\":\\\"false\\\"}}\",\n                    \"tempLock\": false,\n                    \"spaLock\": false,\n                    \"filterStatus\": null,\n                    \"cleanUpCycle\": false,\n                    \"summerTimer\": false,\n                    \"units\": null,\n                    \"spaEmailNotification\": true,\n                    \"promotionEmailNotification\": false,\n                    \"spaPushNotification\": true,\n                    \"createdAt\": \"2024-05-04T14:46:26.41\",\n                    \"updatedAt\": \"2024-05-04T14:46:26.41\",\n                    \"userTempratureUnit\": false,\n                    \"promotionPushNotification\": false\n                },\n                \"spaTempStatus\": 1,\n                \"installationDate\": \"06-04-2022\",\n                \"spaOwnerStatus\": \"SPA_OWNER\",\n                \"invitationMailStatus\": \"NONE\",\n                \"isConnectedData\": {\n                    \"liveSettings\": \"{\\\"dataShape\\\":{\\\"fieldDefinitions\\\":{\\\"usr_set_light_state\\\":{\\\"name\\\":\\\"usr_set_light_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":14,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"audio_power\\\":{\\\"name\\\":\\\"audio_power\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":6,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_stm_state\\\":{\\\"name\\\":\\\"usr_set_stm_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":11,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"spa_usage\\\":{\\\"name\\\":\\\"spa_usage\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":101,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_temp_lock_state\\\":{\\\"name\\\":\\\"usr_set_temp_lock_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":21,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_tanas_menu_entry_ack\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":5,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"description\\\":{\\\"name\\\":\\\"description\\\",\\\"description\\\":\\\"Thing description\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"isBuiltIn\\\":true}},\\\"usr_set_system_reset\\\":{\\\"name\\\":\\\"usr_set_system_reset\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":6,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"0x34\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"thingTemplate\\\":{\\\"name\\\":\\\"thingTemplate\\\",\\\"description\\\":\\\"Thing Template\\\",\\\"baseType\\\":\\\"THINGTEMPLATENAME\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"isBuiltIn\\\":true}},\\\"usr_set_heat_pump\\\":{\\\"name\\\":\\\"usr_set_heat_pump\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":2,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"FF\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_pump1_speed\\\":{\\\"name\\\":\\\"usr_set_pump1_speed\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"audio_source_selection\\\":{\\\"name\\\":\\\"audio_source_selection\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":8,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_tanas_menu_entry\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":8,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"776\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"filter_time_1\\\":{\\\"name\\\":\\\"filter_time_1\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":21,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"filter_time_2\\\":{\\\"name\\\":\\\"filter_time_2\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_spa_usage\\\":{\\\"name\\\":\\\"usr_spa_usage\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":25,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"feature_configuration_degree_celcius\\\":{\\\"name\\\":\\\"feature_configuration_degree_celcius\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":15,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"False\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_clean_cycle\\\":{\\\"name\\\":\\\"usr_set_clean_cycle\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":9,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_pump3_speed\\\":{\\\"name\\\":\\\"usr_set_pump3_speed\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":20,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_temperature\\\":{\\\"name\\\":\\\"usr_set_temperature\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":12,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"65280\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"ctrl_head_water_temperature_ack\\\":{\\\"name\\\":\\\"ctrl_head_water_temperature_ack\\\",\\\"description\\\":\\\"return true when we get ack from temp change\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":5,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"True\\\",\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_temperature_ack\\\":{\\\"name\\\":\\\"usr_set_temperature_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":13,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"False\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"g3_level2_errors\\\":{\\\"name\\\":\\\"g3_level2_errors\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":4,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"mz_system_status\\\":{\\\"name\\\":\\\"mz_system_status\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":53,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_audio_ack\\\":{\\\"name\\\":\\\"usr_set_audio_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":10,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_audio_data\\\":{\\\"name\\\":\\\"usr_set_audio_data\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":3,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1024\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_mz_light\\\":{\\\"name\\\":\\\"usr_set_mz_light\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":17,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1040\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_pump2_speed\\\":{\\\"name\\\":\\\"usr_set_pump2_speed\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":23,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"ctrl_head_set_temperature\\\":{\\\"name\\\":\\\"ctrl_head_set_temperature\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"NUMBER\\\",\\\"ordinal\\\":2,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"isLogged\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"g3_clrmtr_test_data\\\":{\\\"name\\\":\\\"g3_clrmtr_test_data\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":3,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"lls_power_and_ready_ace_err\\\":{\\\"name\\\":\\\"lls_power_and_ready_ace_err\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":30,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_blower\\\":{\\\"name\\\":\\\"usr_set_blower\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":24,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"0\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"ctrl_head_water_temperature\\\":{\\\"name\\\":\\\"ctrl_head_water_temperature\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"NUMBER\\\",\\\"ordinal\\\":3,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"isLogged\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"tags\\\":{\\\"name\\\":\\\"tags\\\",\\\"description\\\":\\\"Thing Tags\\\",\\\"baseType\\\":\\\"TAGS\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"tagType\\\":\\\"ModelTags\\\",\\\"isBuiltIn\\\":true}},\\\"usr_set_tanas_menu_entry_test\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry_test\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":23,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"768\\\",\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"hawk_status_econ\\\":{\\\"name\\\":\\\"hawk_status_econ\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":24,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_mz_ack\\\":{\\\"name\\\":\\\"usr_set_mz_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":18,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"False\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_spa_lock_state\\\":{\\\"name\\\":\\\"usr_set_spa_lock_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":25,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_clean_lock_state\\\":{\\\"name\\\":\\\"usr_set_clean_lock_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":19,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_tanas_menu_entry_boost\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry_boost\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"768\\\",\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"name\\\":{\\\"name\\\":\\\"name\\\",\\\"description\\\":\\\"Thing name\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"isBuiltIn\\\":true}},\\\"temp_diff\\\":{\\\"name\\\":\\\"temp_diff\\\",\\\"description\\\":\\\"This difference of  ( ctrl_head_water_temperature - high_limit_temperature )\\\",\\\"baseType\\\":\\\"NUMBER\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"salline_test\\\":{\\\"name\\\":\\\"salline_test\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":97,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}}}},\\\"rows\\\":[{\\\"usr_set_light_state\\\":\\\"\\\",\\\"audio_power\\\":\\\"0\\\",\\\"usr_set_stm_state\\\":\\\"1\\\",\\\"spa_usage\\\":\\\"255\\\",\\\"usr_set_temp_lock_state\\\":\\\"2\\\",\\\"usr_set_tanas_menu_entry_ack\\\":\\\"\\\",\\\"description\\\":\\\"Reunion\\\",\\\"usr_set_system_reset\\\":\\\"0x34\\\",\\\"thingTemplate\\\":\\\"CALDERA.Template\\\",\\\"usr_set_heat_pump\\\":\\\"FF\\\",\\\"usr_set_pump1_speed\\\":\\\"1\\\",\\\"audio_source_selection\\\":\\\"4\\\",\\\"usr_set_tanas_menu_entry\\\":\\\"768\\\",\\\"filter_time_1\\\":\\\"60\\\",\\\"filter_time_2\\\":\\\"30\\\",\\\"usr_spa_usage\\\":\\\"255\\\",\\\"feature_configuration_degree_celcius\\\":\\\"False\\\",\\\"usr_set_clean_cycle\\\":\\\"1\\\",\\\"usr_set_pump3_speed\\\":\\\"1\\\",\\\"usr_set_temperature\\\":\\\"65280\\\",\\\"ctrl_head_water_temperature_ack\\\":\\\"True\\\",\\\"usr_set_temperature_ack\\\":\\\"False\\\",\\\"g3_level2_errors\\\":\\\"255\\\",\\\"mz_system_status\\\":\\\"0\\\",\\\"usr_set_audio_ack\\\":\\\"\\\",\\\"usr_set_audio_data\\\":\\\"1024\\\",\\\"usr_set_mz_light\\\":\\\"1040\\\",\\\"usr_set_pump2_speed\\\":\\\"1\\\",\\\"ctrl_head_set_temperature\\\":104.0,\\\"g3_clrmtr_test_data\\\":\\\"255\\\",\\\"lls_power_and_ready_ace_err\\\":\\\"False\\\",\\\"usr_set_blower\\\":\\\"0\\\",\\\"ctrl_head_water_temperature\\\":104.0,\\\"tags\\\":[{\\\"vocabulary\\\":\\\"Watkins-Connextions\\\",\\\"vocabularyTerm\\\":\\\"SmartDevices\\\"},{\\\"vocabulary\\\":\\\"Watkins-Connextions\\\",\\\"vocabularyTerm\\\":\\\"Project\\\"},{\\\"vocabulary\\\":\\\"Watkins-Connextions\\\",\\\"vocabularyTerm\\\":\\\"Things\\\"}],\\\"usr_set_tanas_menu_entry_test\\\":\\\"768\\\",\\\"hawk_status_econ\\\":\\\"False\\\",\\\"usr_set_mz_ack\\\":\\\"False\\\",\\\"usr_set_spa_lock_state\\\":\\\"1\\\",\\\"usr_set_clean_lock_state\\\":\\\"1\\\",\\\"usr_set_tanas_menu_entry_boost\\\":\\\"768\\\",\\\"name\\\":\\\"00000000000000000004F3FFFF69BB2F\\\",\\\"temp_diff\\\":0.0,\\\"salline_test\\\":\\\"255\\\"}]}\",\n                    \"isDeviceConnected\": \"{\\\"dataShape\\\":{\\\"fieldDefinitions\\\":{\\\"result\\\":{\\\"name\\\":\\\"result\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"BOOLEAN\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{}}}},\\\"rows\\\":[{\\\"result\\\":true}]}\"\n                },\n                \"userId\": 1930,\n                \"firstName\": \"Mark\",\n                \"lastName\": \"Watson\",\n                \"emailAddress\": \"markwatson@cantab.net\",\n                \"userTempratureUnit\": false\n            }\n        ],\n        \"unReadNotificationCount\": 3\n    },\n    \"oldUserData\": [],\n    \"timeStamp\": \"2024-05-11T16:12:51.752\",\n    \"nTime\": \"2024-05-11T23:12:51.752\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Lights On",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"param\": \"{\\\"usr_set_mz_light\\\" : \\\"1041\\\"}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/send-my-spa-settings-to-thingWorx?hnaNo=00000000000000000004F3FFFF69BB2F",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"setting",
+						"send-my-spa-settings-to-thingWorx"
+					],
+					"query": [
+						{
+							"key": "hnaNo",
+							"value": "00000000000000000004F3FFFF69BB2F"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Lights 1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"param\": \"{\\\"usr_set_mz_light\\\" : \\\"1041\\\"}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/send-my-spa-settings-to-thingWorx?hnaNo=00000000000000000004F3FFFF69BB2F",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"setting",
+								"send-my-spa-settings-to-thingWorx"
+							],
+							"query": [
+								{
+									"key": "hnaNo",
+									"value": "00000000000000000004F3FFFF69BB2F"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 00:16:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Data fetch successfully.\",\n    \"data\": \"{\\\"dataShape\\\":{\\\"fieldDefinitions\\\":{\\\"result\\\":{\\\"name\\\":\\\"result\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"BOOLEAN\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{}}}},\\\"rows\\\":[{\\\"result\\\":true}]}\",\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T17:16:57.146\",\n    \"nTime\": \"2024-05-12T00:16:57.146\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Lights Off",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"param\": \"{\\\"usr_set_mz_light\\\" : \\\"1041\\\"}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/send-my-spa-settings-to-thingWorx?hnaNo=00000000000000000004F3FFFF69BB2F",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"setting",
+						"send-my-spa-settings-to-thingWorx"
+					],
+					"query": [
+						{
+							"key": "hnaNo",
+							"value": "00000000000000000004F3FFFF69BB2F"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Lights 2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"param\": \"{\\\"usr_set_mz_light\\\" : \\\"1040\\\"}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/send-my-spa-settings-to-thingWorx?hnaNo=00000000000000000004F3FFFF69BB2F",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"setting",
+								"send-my-spa-settings-to-thingWorx"
+							],
+							"query": [
+								{
+									"key": "hnaNo",
+									"value": "00000000000000000004F3FFFF69BB2F"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 00:17:15 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Data fetch successfully.\",\n    \"data\": \"{\\\"dataShape\\\":{\\\"fieldDefinitions\\\":{\\\"result\\\":{\\\"name\\\":\\\"result\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"BOOLEAN\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{}}}},\\\"rows\\\":[{\\\"result\\\":true}]}\",\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T17:17:15.604\",\n    \"nTime\": \"2024-05-12T00:17:15.604\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Set Temperature",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"param\": \"{\\\"usr_set_temperature\\\" : \\\"65534\\\"}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/send-my-spa-settings-to-thingWorx?hnaNo=00000000000000000004F3FFFF69BB2F&spaTempStatus=1",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"setting",
+						"send-my-spa-settings-to-thingWorx"
+					],
+					"query": [
+						{
+							"key": "hnaNo",
+							"value": "00000000000000000004F3FFFF69BB2F"
+						},
+						{
+							"key": "spaTempStatus",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Live Settings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/live-spa-settings?hnaNo=00000000000000000004F3FFFF69BB2F",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"setting",
+						"live-spa-settings"
+					],
+					"query": [
+						{
+							"key": "hnaNo",
+							"value": "00000000000000000004F3FFFF69BB2F"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Live Settings",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/live-spa-settings?hnaNo=00000000000000000004F3FFFF69BB2F",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"setting",
+								"live-spa-settings"
+							],
+							"query": [
+								{
+									"key": "hnaNo",
+									"value": "00000000000000000004F3FFFF69BB2F"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 00:31:38 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"data fetched successfully\",\n    \"data\": \"{\\\"dataShape\\\":{\\\"fieldDefinitions\\\":{\\\"usr_set_light_state\\\":{\\\"name\\\":\\\"usr_set_light_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":14,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"audio_power\\\":{\\\"name\\\":\\\"audio_power\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":6,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_stm_state\\\":{\\\"name\\\":\\\"usr_set_stm_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":11,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"spa_usage\\\":{\\\"name\\\":\\\"spa_usage\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":101,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_temp_lock_state\\\":{\\\"name\\\":\\\"usr_set_temp_lock_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":21,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_tanas_menu_entry_ack\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":5,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"description\\\":{\\\"name\\\":\\\"description\\\",\\\"description\\\":\\\"Thing description\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"isBuiltIn\\\":true}},\\\"usr_set_system_reset\\\":{\\\"name\\\":\\\"usr_set_system_reset\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":6,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"0x34\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"thingTemplate\\\":{\\\"name\\\":\\\"thingTemplate\\\",\\\"description\\\":\\\"Thing Template\\\",\\\"baseType\\\":\\\"THINGTEMPLATENAME\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"isBuiltIn\\\":true}},\\\"usr_set_heat_pump\\\":{\\\"name\\\":\\\"usr_set_heat_pump\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":2,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"FF\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_pump1_speed\\\":{\\\"name\\\":\\\"usr_set_pump1_speed\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"audio_source_selection\\\":{\\\"name\\\":\\\"audio_source_selection\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":8,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_tanas_menu_entry\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":8,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"776\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"filter_time_1\\\":{\\\"name\\\":\\\"filter_time_1\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":21,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"filter_time_2\\\":{\\\"name\\\":\\\"filter_time_2\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_spa_usage\\\":{\\\"name\\\":\\\"usr_spa_usage\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":25,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"feature_configuration_degree_celcius\\\":{\\\"name\\\":\\\"feature_configuration_degree_celcius\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":15,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"False\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_clean_cycle\\\":{\\\"name\\\":\\\"usr_set_clean_cycle\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":9,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_pump3_speed\\\":{\\\"name\\\":\\\"usr_set_pump3_speed\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":20,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_temperature\\\":{\\\"name\\\":\\\"usr_set_temperature\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":12,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"65280\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"ctrl_head_water_temperature_ack\\\":{\\\"name\\\":\\\"ctrl_head_water_temperature_ack\\\",\\\"description\\\":\\\"return true when we get ack from temp change\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":5,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"True\\\",\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_temperature_ack\\\":{\\\"name\\\":\\\"usr_set_temperature_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":13,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"False\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"g3_level2_errors\\\":{\\\"name\\\":\\\"g3_level2_errors\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":4,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"mz_system_status\\\":{\\\"name\\\":\\\"mz_system_status\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":53,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_audio_ack\\\":{\\\"name\\\":\\\"usr_set_audio_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":10,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_audio_data\\\":{\\\"name\\\":\\\"usr_set_audio_data\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":3,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1024\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_mz_light\\\":{\\\"name\\\":\\\"usr_set_mz_light\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":17,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1040\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_pump2_speed\\\":{\\\"name\\\":\\\"usr_set_pump2_speed\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":23,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"ctrl_head_set_temperature\\\":{\\\"name\\\":\\\"ctrl_head_set_temperature\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"NUMBER\\\",\\\"ordinal\\\":2,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"isLogged\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"g3_clrmtr_test_data\\\":{\\\"name\\\":\\\"g3_clrmtr_test_data\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":3,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"lls_power_and_ready_ace_err\\\":{\\\"name\\\":\\\"lls_power_and_ready_ace_err\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":30,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_blower\\\":{\\\"name\\\":\\\"usr_set_blower\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":24,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"0\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"ctrl_head_water_temperature\\\":{\\\"name\\\":\\\"ctrl_head_water_temperature\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"NUMBER\\\",\\\"ordinal\\\":3,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"isLogged\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"tags\\\":{\\\"name\\\":\\\"tags\\\",\\\"description\\\":\\\"Thing Tags\\\",\\\"baseType\\\":\\\"TAGS\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"tagType\\\":\\\"ModelTags\\\",\\\"isBuiltIn\\\":true}},\\\"usr_set_tanas_menu_entry_test\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry_test\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":23,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"768\\\",\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"hawk_status_econ\\\":{\\\"name\\\":\\\"hawk_status_econ\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":24,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_mz_ack\\\":{\\\"name\\\":\\\"usr_set_mz_ack\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":18,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"False\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_spa_lock_state\\\":{\\\"name\\\":\\\"usr_set_spa_lock_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":25,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_clean_lock_state\\\":{\\\"name\\\":\\\"usr_set_clean_lock_state\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":19,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"1\\\",\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"usr_set_tanas_menu_entry_boost\\\":{\\\"name\\\":\\\"usr_set_tanas_menu_entry_boost\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"defaultValue\\\":\\\"768\\\",\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"name\\\":{\\\"name\\\":\\\"name\\\",\\\"description\\\":\\\"Thing name\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":0,\\\"aspects\\\":{\\\"isReadOnly\\\":true,\\\"isPersistent\\\":false,\\\"isBuiltIn\\\":true}},\\\"temp_diff\\\":{\\\"name\\\":\\\"temp_diff\\\",\\\"description\\\":\\\"This difference of  ( ctrl_head_water_temperature - high_limit_temperature )\\\",\\\"baseType\\\":\\\"NUMBER\\\",\\\"ordinal\\\":22,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}},\\\"salline_test\\\":{\\\"name\\\":\\\"salline_test\\\",\\\"description\\\":\\\"\\\",\\\"baseType\\\":\\\"STRING\\\",\\\"ordinal\\\":97,\\\"aspects\\\":{\\\"isPersistent\\\":true,\\\"dataChangeType\\\":\\\"VALUE\\\",\\\"cacheTime\\\":0.0}}}},\\\"rows\\\":[{\\\"usr_set_light_state\\\":\\\"\\\",\\\"audio_power\\\":\\\"0\\\",\\\"usr_set_stm_state\\\":\\\"1\\\",\\\"spa_usage\\\":\\\"255\\\",\\\"usr_set_temp_lock_state\\\":\\\"2\\\",\\\"usr_set_tanas_menu_entry_ack\\\":\\\"\\\",\\\"description\\\":\\\"Reunion\\\",\\\"usr_set_system_reset\\\":\\\"0x34\\\",\\\"thingTemplate\\\":\\\"CALDERA.Template\\\",\\\"usr_set_heat_pump\\\":\\\"FF\\\",\\\"usr_set_pump1_speed\\\":\\\"1\\\",\\\"audio_source_selection\\\":\\\"4\\\",\\\"usr_set_tanas_menu_entry\\\":\\\"768\\\",\\\"filter_time_1\\\":\\\"60\\\",\\\"filter_time_2\\\":\\\"30\\\",\\\"usr_spa_usage\\\":\\\"255\\\",\\\"feature_configuration_degree_celcius\\\":\\\"False\\\",\\\"usr_set_clean_cycle\\\":\\\"1\\\",\\\"usr_set_pump3_speed\\\":\\\"1\\\",\\\"usr_set_temperature\\\":\\\"65280\\\",\\\"ctrl_head_water_temperature_ack\\\":\\\"True\\\",\\\"usr_set_temperature_ack\\\":\\\"False\\\",\\\"g3_level2_errors\\\":\\\"255\\\",\\\"mz_system_status\\\":\\\"0\\\",\\\"usr_set_audio_ack\\\":\\\"\\\",\\\"usr_set_audio_data\\\":\\\"1024\\\",\\\"usr_set_mz_light\\\":\\\"1040\\\",\\\"usr_set_pump2_speed\\\":\\\"1\\\",\\\"ctrl_head_set_temperature\\\":104.0,\\\"g3_clrmtr_test_data\\\":\\\"255\\\",\\\"lls_power_and_ready_ace_err\\\":\\\"False\\\",\\\"usr_set_blower\\\":\\\"0\\\",\\\"ctrl_head_water_temperature\\\":104.0,\\\"tags\\\":[{\\\"vocabulary\\\":\\\"Watkins-Connextions\\\",\\\"vocabularyTerm\\\":\\\"SmartDevices\\\"},{\\\"vocabulary\\\":\\\"Watkins-Connextions\\\",\\\"vocabularyTerm\\\":\\\"Project\\\"},{\\\"vocabulary\\\":\\\"Watkins-Connextions\\\",\\\"vocabularyTerm\\\":\\\"Things\\\"}],\\\"usr_set_tanas_menu_entry_test\\\":\\\"768\\\",\\\"hawk_status_econ\\\":\\\"False\\\",\\\"usr_set_mz_ack\\\":\\\"False\\\",\\\"usr_set_spa_lock_state\\\":\\\"1\\\",\\\"usr_set_clean_lock_state\\\":\\\"1\\\",\\\"usr_set_tanas_menu_entry_boost\\\":\\\"768\\\",\\\"name\\\":\\\"00000000000000000004F3FFFF69BB2F\\\",\\\"temp_diff\\\":0.0,\\\"salline_test\\\":\\\"255\\\"}]}\",\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T17:31:38.793\",\n    \"nTime\": \"2024-05-12T00:31:38.793\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Settings",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/my-spa-accessories-settings?spaId=708",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"setting",
+								"my-spa-accessories-settings"
+							],
+							"query": [
+								{
+									"key": "spaId",
+									"value": "708"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 00:32:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"setting fetched successfully\",\n    \"data\": {\n        \"spaIds\": 708,\n        \"thingWorxData\": \"{\\\"Control Box\\\":\\\"Eagle\\\",\\\"Circulation Pump\\\":\\\"true\\\",\\\"SPA_Details\\\":{\\\"Brand\\\":\\\"Caldera\\\",\\\"Series\\\":\\\"PARADISE\\\",\\\"Model\\\":\\\"REUNION\\\"},\\\"JET PUMPS\\\":{\\\"Jet_Pump_1\\\":\\\"1\\\",\\\"Jet_Pump_3\\\":\\\"N\\\",\\\"Jet_Pump_2\\\":\\\"2\\\"},\\\"Summer_Timer\\\":\\\"true\\\",\\\"Lights\\\":{\\\"Lights\\\":\\\"true\\\",\\\"Bartop\\\":\\\"false\\\",\\\"Dimming\\\":\\\"3 Steps\\\",\\\"Underwater_Main_Light\\\":\\\"false\\\",\\\"Water_Feature\\\":\\\"true\\\",\\\"Lighting_Type\\\":\\\"Points-of-Light\\\",\\\"Exterior_Light\\\":\\\"false\\\"},\\\"OPTIONAL FEATURES\\\":{\\\"Audio\\\":\\\"false\\\",\\\"CoolZoneTM\\\":\\\"false\\\",\\\"FreshWater Salt SystemTM\\\":\\\"false\\\"}}\",\n        \"spaOwnerStatus\": \"SPA_OWNER\",\n        \"settingIdd\": 1004\n    },\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T17:32:39.893\",\n    \"nTime\": \"2024-05-12T00:32:39.893\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Tools Settings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/my-spa-accessories-tools-settings?spaId=708",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"setting",
+						"my-spa-accessories-tools-settings"
+					],
+					"query": [
+						{
+							"key": "spaId",
+							"value": "708"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Tools Settings",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/setting/my-spa-accessories-tools-settings?spaId=708",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"setting",
+								"my-spa-accessories-tools-settings"
+							],
+							"query": [
+								{
+									"key": "spaId",
+									"value": "708"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 00:33:43 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Acccessories Tools Setting fetched successfully\",\n    \"data\": \"[{\\\"feature_name\\\":\\\"FreshWater Salt SystemTM\\\",\\\"is_checked\\\":\\\"false\\\"},{\\\"feature_name\\\":\\\"CoolZoneTM\\\",\\\"is_checked\\\":\\\"false\\\"},{\\\"feature_name\\\":\\\"Audio\\\",\\\"is_checked\\\":\\\"false\\\"}]\",\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T17:33:43.878\",\n    \"nTime\": \"2024-05-12T00:33:43.878\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://connectedspa.watkinsmfg.com/connextion/user/get-user-profile",
+					"protocol": "https",
+					"host": [
+						"connectedspa",
+						"watkinsmfg",
+						"com"
+					],
+					"path": [
+						"connextion",
+						"user",
+						"get-user-profile"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User profile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://connectedspa.watkinsmfg.com/connextion/user/get-user-profile",
+							"protocol": "https",
+							"host": [
+								"connectedspa",
+								"watkinsmfg",
+								"com"
+							],
+							"path": [
+								"connextion",
+								"user",
+								"get-user-profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 00:34:27 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"message\": \"User profile fetched successfully\",\n    \"data\": {\n        \"id\": 1930,\n        \"sId\": null,\n        \"notifyId\": null,\n        \"invitationStatus\": null,\n        \"firstName\": \"Mark\",\n        \"lastName\": \"Watson\",\n        \"emailAddress\": \"markwatson@cantab.net\",\n        \"status\": \"EMAIL_VERIFIED\",\n        \"socialType\": \"NONE\",\n        \"spaOwnerStatus\": null,\n        \"mobileDeviceToken\": \"cAgQXTsowUvjjSTdDA4sEh:APA91bHGZ6SjQIiBJSVrF8dTZ4dG0-Pnxl_HxiRlIbDrvFvRFd-BYuOdQpID5lMcE3R29Q2xTtSPHpDRo0uQCOIHiRFX5hvrtWD-FfoNWlz7NZKshjr0J6Fd2dn8rnyHMWGZ09Q8ZmPJ\",\n        \"tncAccepted\": true,\n        \"deviceType\": \"IOS\",\n        \"osType\": \"17.4.1\",\n        \"location\": null,\n        \"createdBy\": \"Mark\",\n        \"updatedBy\": \"Mark\",\n        \"createdAt\": \"2024-01-02T16:22:24.473\",\n        \"updatedAt\": \"2024-05-11T16:09:46.213\"\n    },\n    \"oldUserData\": null,\n    \"timeStamp\": \"2024-05-11T17:34:27.276\",\n    \"nTime\": \"2024-05-12T00:34:27.276\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "AuthToken",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJrd2F0c29uQGNhbnRhYi5uZXQiLCJuYW1lIjoiTWFyayIsImV4cCI6MTcxODA2MDk4NiwidXNlcklkIjoxOTMwLCJpYXQiOjE3MTU0Njg5ODZ9.h0VPTRrnGHC04ngC2k6NxyjmeYrkQo72YUsbprKLO-fM1t9nrKkfipDTHJiFrUXYfXI-03Lcg_UOQiZQmCWiHg"
+		}
+	]
+}

@@ -5,22 +5,26 @@ repos:
       - id: isort
         name: isort
         args: ["--profile=black"]
+        exclude: ^notes/
       - id: isort
         name: isort (cython)
         types: [cython]
         args: ["--profile=black"]
+        exclude: ^notes/
 
   - repo: https://github.com/psf/black
     rev: 24.8.0
     hooks:
       - id: black
         types: [python]
+        exclude: ^notes/
 
   - repo: https://github.com/asottile/blacken-docs
     rev: 1.18.0
     hooks:
       - id: blacken-docs
         additional_dependencies: ["black==24.8.0"]
+        exclude: ^notes/
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.7.1
@@ -32,49 +36,72 @@ repos:
     hooks:
       - id: nbqa-isort
         args: ["--profile=black"]
+        exclude: ^notes/
       - id: nbqa-black
         additional_dependencies: ["black==24.8.0"]
+        exclude: ^notes/
       - id: nbqa-flake8
+        exclude: ^notes/
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
       - id: python-check-blanket-noqa
+        exclude: ^notes/
       - id: python-check-blanket-type-ignore
+        exclude: ^notes/
       - id: python-check-mock-methods
+        exclude: ^notes/
       - id: python-no-log-warn
+        exclude: ^notes/
       - id: rst-backticks
+        exclude: ^notes/
       - id: rst-directive-colons
         types: [text]
+        exclude: ^notes/
       - id: rst-inline-touching-normal
         types: [text]
+        exclude: ^notes/
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
       - id: check-added-large-files
+        exclude: ^notes/
       - id: check-ast
+        exclude: ^notes/
       - id: check-builtin-literals
+        exclude: ^notes/
       - id: check-case-conflict
+        exclude: ^notes/
       - id: check-docstring-first
+        exclude: ^notes/
       - id: check-shebang-scripts-are-executable
+        exclude: ^notes/
       - id: check-merge-conflict
       - id: check-json
+        exclude: ^notes/
       - id: check-toml
+        exclude: ^notes/
       - id: check-xml
+        exclude: ^notes/
       - id: check-yaml
+        exclude: ^notes/
       - id: debug-statements
+        exclude: ^notes/
       - id: destroyed-symlinks
       - id: detect-private-key
       - id: end-of-file-fixer
-        exclude: ^LICENSE|\.(html|csv|txt|svg|py)$
+        exclude: ^LICENSE|\.(html|csv|txt|svg|py)$|^notes/|^Dockerfile
       - id: pretty-format-json
         args: ["--autofix", "--no-ensure-ascii", "--no-sort-keys"]
         exclude_types: [jupyter]
+        exclude: ^notes/
       - id: requirements-txt-fixer
+        exclude: ^notes/
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude: \.(html|svg)$
+        exclude: \.(html|svg)$|^notes/
 
   - repo: https://github.com/asottile/setup-cfg-fmt
     rev: v2.5.0
