@@ -9,7 +9,8 @@ import pytest
 import pytest_asyncio
 from aiohttp import ClientSession
 
-from pycaldera.async_client import PUMP_LOW, AsyncCalderaClient
+from pycaldera.async_client import AsyncCalderaClient
+from pycaldera.const import PUMP_LOW
 from pycaldera.exceptions import AuthenticationError, InvalidParameterError
 
 

@@ -9,6 +9,23 @@ import aiohttp
 import pydantic
 from aiohttp import ClientError, ClientSession
 
+from .const import (
+    API_BASE_URL,
+    AUTH_DEVICE_TOKEN,
+    AUTH_DEVICE_TYPE,
+    AUTH_OS_TYPE,
+    DEFAULT_TIMEOUT,
+    LIGHT_OFF,
+    LIGHT_ON,
+    LOCK_DISABLED,
+    LOCK_ENABLED,
+    MAX_TEMP_C,
+    MAX_TEMP_F,
+    MAX_TEMP_VALUE,
+    MIN_TEMP_C,
+    MIN_TEMP_F,
+    TEMP_SCALE,
+)
 from .exceptions import (
     AuthenticationError,
     ConnectionError,
@@ -25,22 +42,15 @@ from .models import (
 
 logger = logging.getLogger(__name__)
 
-# Pump speed constants
-PUMP_OFF = 0
-PUMP_LOW = 1
-PUMP_HIGH = 2
-
 
 class AsyncCalderaClient:
     """Async client for interacting with Caldera Spa API."""
-
-    BASE_URL = "https://connectedspa.watkinsmfg.com/connextion"
 
     def __init__(
         self,
         email: str,
         password: str,
-        timeout: float = 10.0,
+        timeout: float = DEFAULT_TIMEOUT,
         debug: bool = False,
         session: Optional[ClientSession] = None,
         loop: Optional[AbstractEventLoop] = None,
@@ -94,7 +104,7 @@ class AsyncCalderaClient:
         if not self._session:
             raise RuntimeError("Client not initialized. Use async context manager.")
 
-        url = f"{self.BASE_URL}/{endpoint}"
+        url = f"{API_BASE_URL}/{endpoint}"
         kwargs.setdefault("timeout", self.timeout)
 
         # Add Authorization header if we have a token (except for login)
@@ -135,9 +145,9 @@ class AsyncCalderaClient:
                 json={
                     "emailAddress": self.email,
                     "password": self.password,
-                    "deviceType": "IOS",
-                    "osType": "17.4.1",
-                    "mobileDeviceToken": "dummy_token:APA91bDummy0123456789",
+                    "deviceType": AUTH_DEVICE_TYPE,
+                    "osType": AUTH_OS_TYPE,
+                    "mobileDeviceToken": AUTH_DEVICE_TOKEN,
                     "location": "",
                 },
             )
@@ -314,14 +324,14 @@ class AsyncCalderaClient:
             SpaControlError: If the API returns an error
         """
         if unit.upper() == "F":
-            if not (80 <= temperature <= 104):
+            if not (MIN_TEMP_F <= temperature <= MAX_TEMP_F):
                 raise InvalidParameterError(
-                    "Temperature must be between 80°F and 104°F"
+                    f"Temperature must be between {MIN_TEMP_F}°F and {MAX_TEMP_F}°F"
                 )
         else:
-            if not (26.5 <= temperature <= 40):
+            if not (MIN_TEMP_C <= temperature <= MAX_TEMP_C):
                 raise InvalidParameterError(
-                    "Temperature must be between 26.5°C and 40°C"
+                    f"Temperature must be between {MIN_TEMP_C}°C and {MAX_TEMP_C}°C"
                 )
 
         await self._ensure_auth()
@@ -331,9 +341,9 @@ class AsyncCalderaClient:
         if unit.upper() == "C":
             temperature = (temperature * 9 / 5) + 32
 
-        # Hypothesize that 65535 is for 104 and 1 degree is 128
-        # (based on observing that 102 might be 65280)
-        temp_value = min(65535, 65536 - int((104 - temperature) * 128))
+        # Calculate API temperature value based on constants
+        temp_diff = MAX_TEMP_F - temperature
+        temp_value = min(MAX_TEMP_VALUE, 65536 - int(temp_diff * TEMP_SCALE))
 
         logger.debug(
             f"Temperature encoding:\n"
@@ -370,7 +380,7 @@ class AsyncCalderaClient:
         await self._ensure_auth()
         await self._ensure_spa_info()
 
-        light_value = "1041" if state else "1040"
+        light_value = LIGHT_ON if state else LIGHT_OFF
         logger.info(f"Setting lights {'on' if state else 'off'}")
 
         try:
@@ -450,7 +460,11 @@ class AsyncCalderaClient:
                 params={"hnaNo": self._hna_number},
                 json={
                     "param": json.dumps(
-                        {"usr_set_temp_lock_state": "2" if locked else "1"}
+                        {
+                            "usr_set_temp_lock_state": (
+                                LOCK_ENABLED if locked else LOCK_DISABLED
+                            )
+                        }
                     )
                 },
             )
@@ -485,7 +499,11 @@ class AsyncCalderaClient:
                 params={"hnaNo": self._hna_number},
                 json={
                     "param": json.dumps(
-                        {"usr_set_spa_lock_state": "2" if locked else "1"}
+                        {
+                            "usr_set_spa_lock_state": (
+                                LOCK_ENABLED if locked else LOCK_DISABLED
+                            )
+                        }
                     )
                 },
             )

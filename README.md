@@ -53,49 +53,72 @@ async with AsyncCalderaClient(
     # etc...
 ```
 
+### Error Handling
+
+All operations can raise these base exceptions:
+- `AuthenticationError`: When authentication fails or token expires
+- `ConnectionError`: When network connection fails or API is unreachable
+- `SpaControlError`: When the API returns an error response
+
 ### Temperature Control
 
 ```python
 async with spa as client:
     # Set temperature (80-104°F or 26.5-40°C)
-    await client.set_temperature(102)  # Fahrenheit
-    await client.set_temperature(39, "C")  # Celsius
+    try:
+        await client.set_temperature(102)  # Fahrenheit
+        await client.set_temperature(39, "C")  # Celsius
+    except InvalidParameterError:
+        # Raised when temperature is outside valid range
+        # (80-104°F or 26.5-40°C)
+        pass
 ```
 
 ### Pump Control
 
 ```python
 async with spa as client:
-    # Set pump speed
-    await client.set_pump(1, PUMP_HIGH)  # Set pump 1 to high speed
-    await client.set_pump(2, PUMP_LOW)  # Set pump 2 to low speed
-    await client.set_pump(3, PUMP_OFF)  # Turn off pump 3
+    try:
+        await client.set_pump(1, PUMP_HIGH)  # Set pump 1 to high speed
+        await client.set_pump(2, PUMP_LOW)  # Set pump 2 to low speed
+        await client.set_pump(3, PUMP_OFF)  # Turn off pump 3
+    except InvalidParameterError:
+        # Raised when:
+        # - pump_number is not 1, 2, or 3
+        # - speed is not PUMP_OFF (0), PUMP_LOW (1), or PUMP_HIGH (2)
+        pass
 ```
 
 ### Light Control
 
 ```python
 async with spa as client:
-    await client.set_lights(True)  # Turn lights on
-    await client.set_lights(False)  # Turn lights off
+    try:
+        await client.set_lights(True)  # Turn lights on
+        await client.set_lights(False)  # Turn lights off
+    except SpaControlError:
+        # Raised when light control fails
+        pass
 ```
 
 ### Status & Settings
 
 ```python
 async with spa as client:
-    # Get basic spa status
-    status = await client.get_spa_status()
-    print(f"Spa name: {status.spaName}")
-    print(f"Current temp: {status.ctrl_head_water_temperature}°F")
-    print(f"Online: {status.status == 'ONLINE'}")
+    try:
+        # Get basic spa status
+        status = await client.get_spa_status()
+        print(f"Online: {status.status == 'ONLINE'}")
 
-    # Get detailed live settings
-    settings = await client.get_live_settings()
-    print(f"Target temp: {settings.ctrl_head_set_temperature}°F")
-    print(f"Pump 1 speed: {settings.usr_set_pump1_speed}")
-    print(f"Lights on: {settings.usr_set_light_state}")
-```
+        # Get detailed live settings
+        settings = await client.get_live_settings()
+        print(f"Target temp: {settings.ctrl_head_set_temperature}°F")
+    except ConnectionError:
+        # Raised when spa is offline or unreachable
+        pass
+    except SpaControlError:
+        # Raised when API returns invalid data
+        pass
 
 ## Development
 
