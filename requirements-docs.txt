@@ -1,5 +1,5 @@
 myst-parser
-pypandoc>=1.6.3
+pypandoc>=1.15
 readthedocs-sphinx-search; python_version>='3.6'
 sphinx>=3.5.4,<6
 sphinx-autobuild
