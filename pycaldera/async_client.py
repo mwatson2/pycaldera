@@ -23,10 +23,8 @@ from .const import (
     LOCK_ENABLED,
     MAX_TEMP_C,
     MAX_TEMP_F,
-    MAX_TEMP_VALUE,
     MIN_TEMP_C,
     MIN_TEMP_F,
-    TEMP_SCALE,
 )
 from .exceptions import (
     AuthenticationError,
@@ -371,17 +369,21 @@ class AsyncCalderaClient:
         await self._ensure_auth()
         await self._ensure_spa_info()
 
+        settings = await self.get_live_settings()
+        current_temp = float(settings.ctrl_head_set_temperature)
+
         # Convert to Fahrenheit if needed
         if unit.upper() == "C":
             temperature = (temperature * 9 / 5) + 32
 
         # Calculate API temperature value based on constants
-        temp_diff = MAX_TEMP_F - temperature
-        temp_value = min(MAX_TEMP_VALUE, 65536 - int(temp_diff * TEMP_SCALE))
+        temp_diff = temperature - current_temp
+        temp_value = (int(temp_diff) | 0xFF00) & 0xFFFF
 
         logger.debug(
             f"Temperature encoding:\n"
             f"  Requested: {original_temp}°{unit.upper()} ({temperature}°F)\n"
+            f"  Current: {current_temp}°F\n"
             f"  API value: {temp_value} (0x{temp_value:04X})"
         )
 
@@ -644,7 +646,7 @@ class AsyncCalderaClient:
 
         def check_temp_ack(settings: LiveSettings) -> bool:
             # Check if temperature is acknowledged
-            temp_ack = settings.usr_set_temperature_ack == "True"
+            temp_ack = settings.ctrl_head_water_temperature_ack == "True"
 
             # If expected_temp is provided, also check if the set temperature matches
             if expected_temp is not None and temp_ack:

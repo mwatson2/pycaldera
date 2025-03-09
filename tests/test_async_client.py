@@ -310,16 +310,44 @@ async def test_set_temperature(client):
     # Mock successful authentication
     client._token = "Bearer test-token"
 
-    async def mock_response(*args, **kwargs):
-        return {"statusCode": 200}
+    # Track what params are being sent
+    sent_params = {}
 
-    with patch.object(client, "_make_request", side_effect=mock_response):
+    async def mock_response(*args, **kwargs):
+        nonlocal sent_params
+        # Store the params for later verification
+        if len(args) > 1 and "send-my-spa-settings-to-thingWorx" in args[1]:
+            if "json" in kwargs:
+                sent_params = json.loads(kwargs["json"]["param"])
+        return {"statusCode": 200}, {}
+
+    # Mock the get_live_settings to return a fixed current temperature
+    async def mock_get_live_settings():
+        return MagicMock(ctrl_head_set_temperature=100.0)
+
+    with patch.object(client, "_make_request", side_effect=mock_response), patch.object(
+        client, "get_live_settings", side_effect=mock_get_live_settings
+    ):
         # First ensure we have spa info
         client._hna_number = "test-hna"
         client._spa_id = 123
 
-        result = await client.set_temperature(102.5, wait_for_ack=False)
+        # Request temperature 2 degrees higher
+        result = await client.set_temperature(102.0, wait_for_ack=False)
         assert result is True
+
+        # Verify the temperature calculation for a 2 degree increase
+        # (2 | 0xff00) & 0xffff = 0xff02 = 65282
+        assert sent_params["usr_set_temperature"] == "65282"
+
+        # Request temperature 3 degrees lower
+        sent_params = {}
+        result = await client.set_temperature(97.0, wait_for_ack=False)
+        assert result is True
+
+        # Verify the temperature calculation for a 3 degree decrease
+        # (-3 | 0xff00) & 0xffff = 0xfffd = 65533
+        assert sent_params["usr_set_temperature"] == "65533"
 
 
 @pytest.mark.asyncio
@@ -330,148 +358,51 @@ async def test_set_temperature_with_acknowledgment(client):
     client._hna_number = "test-hna"
     client._spa_id = 123
 
+    # Track what params are being sent
+    sent_params = {}
+
     # Mock the response for temperature setting
     async def mock_set_temp_response(*args, **kwargs):
+        nonlocal sent_params
+        # Store the params for later verification
+        if len(args) > 1 and "send-my-spa-settings-to-thingWorx" in args[1]:
+            if "json" in kwargs:
+                sent_params = json.loads(kwargs["json"]["param"])
         return {"statusCode": 200, "message": "Success"}, {}
 
-    # Create a sequence of responses for get_live_settings:
-    # 1. First call: Temp not yet acknowledged (ack="False")
-    # 2. Second call: Temp acknowledged (ack="True")
-    live_settings_not_acked = {
-        "statusCode": 200,
-        "message": "Success",
-        "data": {
-            "dataShape": {"fieldDefinitions": {}},
-            "rows": [
-                {
-                    "ctrl_head_water_temperature": 98.5,
-                    "ctrl_head_set_temperature": 100.0,
-                    "usr_set_temperature": "1234",
-                    "usr_set_temperature_ack": "False",
-                    "ctrl_head_water_temperature_ack": "False",
-                    "temp_diff": 1.5,
-                    "feature_configuration_degree_celcius": "0",
-                    "usr_set_pump1_speed": "0",
-                    "usr_set_pump2_speed": "0",
-                    "usr_set_pump3_speed": "0",
-                    "usr_set_blower": "0",
-                    "usr_set_heat_pump": "0",
-                    "usr_set_light_state": "0",
-                    "usr_set_mz_light": "1040",
-                    "usr_set_mz_ack": "1",
-                    "usr_set_temp_lock_state": "1",
-                    "usr_set_spa_lock_state": "1",
-                    "usr_set_clean_lock_state": "1",
-                    "filter_time_1": "0",
-                    "filter_time_2": "0",
-                    "usr_set_clean_cycle": "0",
-                    "usr_set_stm_state": "0",
-                    "audio_power": "0",
-                    "audio_source_selection": "0",
-                    "usr_set_audio_data": "0",
-                    "usr_set_audio_ack": "0",
-                    "mz_system_status": "0",
-                    "hawk_status_econ": "0",
-                    "g3_level2_errors": "0",
-                    "g3_clrmtr_test_data": "0",
-                    "lls_power_and_ready_ace_err": "0",
-                    "usr_set_system_reset": "0",
-                    "spa_usage": "0",
-                    "usr_spa_usage": "0",
-                    "salline_test": "0",
-                    "usr_set_tanas_menu_entry": "0",
-                    "usr_set_tanas_menu_entry_ack": "0",
-                    "usr_set_tanas_menu_entry_test": "0",
-                    "usr_set_tanas_menu_entry_boost": "0",
-                    "name": "test_device",
-                    "description": "test device",
-                    "thingTemplate": "template",
-                    "tags": [],
-                }
-            ],
-        },
-        "oldUserData": None,
-        "timeStamp": "2024-01-01T00:00:00",
-        "nTime": "2024-01-01T00:00:00",
-    }
+    # Create a mock LiveSettings object for initial temperature check
+    initial_settings = MagicMock()
+    initial_settings.ctrl_head_set_temperature = 98.0
+    initial_settings.ctrl_head_water_temperature = 98.5
 
-    live_settings_acked = {
-        "statusCode": 200,
-        "message": "Success",
-        "data": {
-            "dataShape": {"fieldDefinitions": {}},
-            "rows": [
-                {
-                    "ctrl_head_water_temperature": 98.5,
-                    "ctrl_head_set_temperature": 100.0,
-                    "usr_set_temperature": "1234",
-                    "usr_set_temperature_ack": "True",
-                    "ctrl_head_water_temperature_ack": "True",
-                    "temp_diff": 1.5,
-                    "feature_configuration_degree_celcius": "0",
-                    "usr_set_pump1_speed": "0",
-                    "usr_set_pump2_speed": "0",
-                    "usr_set_pump3_speed": "0",
-                    "usr_set_blower": "0",
-                    "usr_set_heat_pump": "0",
-                    "usr_set_light_state": "0",
-                    "usr_set_mz_light": "1040",
-                    "usr_set_mz_ack": "1",
-                    "usr_set_temp_lock_state": "1",
-                    "usr_set_spa_lock_state": "1",
-                    "usr_set_clean_lock_state": "1",
-                    "filter_time_1": "0",
-                    "filter_time_2": "0",
-                    "usr_set_clean_cycle": "0",
-                    "usr_set_stm_state": "0",
-                    "audio_power": "0",
-                    "audio_source_selection": "0",
-                    "usr_set_audio_data": "0",
-                    "usr_set_audio_ack": "0",
-                    "mz_system_status": "0",
-                    "hawk_status_econ": "0",
-                    "g3_level2_errors": "0",
-                    "g3_clrmtr_test_data": "0",
-                    "lls_power_and_ready_ace_err": "0",
-                    "usr_set_system_reset": "0",
-                    "spa_usage": "0",
-                    "usr_spa_usage": "0",
-                    "salline_test": "0",
-                    "usr_set_tanas_menu_entry": "0",
-                    "usr_set_tanas_menu_entry_ack": "0",
-                    "usr_set_tanas_menu_entry_test": "0",
-                    "usr_set_tanas_menu_entry_boost": "0",
-                    "name": "test_device",
-                    "description": "test device",
-                    "thingTemplate": "template",
-                    "tags": [],
-                }
-            ],
-        },
-        "oldUserData": None,
-        "timeStamp": "2024-01-01T00:00:00",
-        "nTime": "2024-01-01T00:00:00",
-    }
+    # Create a mock LiveSettings object for not acknowledged
+    not_acked_settings = MagicMock()
+    not_acked_settings.ctrl_head_set_temperature = 100.0
+    not_acked_settings.ctrl_head_water_temperature = 98.5
+    not_acked_settings.ctrl_head_water_temperature_ack = "False"
 
-    # Create a mock that returns unacked first, then acked
-    from pycaldera.models import LiveSettingsResponse
+    # Create a mock LiveSettings object for acknowledged
+    acked_settings = MagicMock()
+    acked_settings.ctrl_head_set_temperature = 100.0
+    acked_settings.ctrl_head_water_temperature = 98.5
+    acked_settings.ctrl_head_water_temperature_ack = "True"
 
+    # Create a sequence of mock responses
     live_settings_responses = [
-        LiveSettingsResponse(**live_settings_not_acked).data.rows[0],
-        LiveSettingsResponse(**live_settings_acked).data.rows[0],
+        initial_settings,  # Initial check
+        not_acked_settings,  # First poll - not yet acknowledged
+        acked_settings,  # Second poll - acknowledged
     ]
 
     # Create an async mock for get_live_settings
     async def mock_get_live_settings():
-        # Return the first item on first call, second item on second call
+        # Return each response in sequence
         if not hasattr(mock_get_live_settings, "call_count"):
             mock_get_live_settings.call_count = 0
 
-        if mock_get_live_settings.call_count == 0:
-            mock_get_live_settings.call_count += 1
-            return live_settings_responses[0]
-        else:
-            return live_settings_responses[1]
+        result = live_settings_responses[min(mock_get_live_settings.call_count, 2)]
+        mock_get_live_settings.call_count += 1
+        return result
 
     # Set up the mocks
     sleep_patch = patch("asyncio.sleep", return_value=None)  # Skip the actual sleep
@@ -481,19 +412,23 @@ async def test_set_temperature_with_acknowledgment(client):
     )
 
     with make_request_patch, get_settings_patch, sleep_patch:
-        # Set temperature with wait_for_ack=True
+        # Set temperature with wait_for_ack=True and a 2 degree increase
         result = await client.set_temperature(
-            100, "F", wait_for_ack=True, polling_interval=0.1
+            100.0, "F", wait_for_ack=True, polling_interval=0.1
         )
 
         # Check that the temperature was set successfully
         assert result is True
 
-        # Since we're using a function rather than a MagicMock,
-        # we can't verify call count directly
+        # Verify the temperature calculation for a 2 degree increase:
+        # (2 | 0xff00) & 0xffff = 0xff02 = 65282
+        assert sent_params["usr_set_temperature"] == "65282"
 
-        # Our test is successful but we can't easily verify all details
-        # The important part is that the result is True
+        # Verify that get_live_settings was called at least 3 times:
+        # 1. Initial call to get current temperature
+        # 2. First poll (not acknowledged)
+        # 3. Second poll (acknowledged)
+        assert mock_get_live_settings.call_count >= 3
 
 
 @pytest.mark.asyncio
