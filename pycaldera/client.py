@@ -125,12 +125,23 @@ class CalderaClient:
         """
         return self._run_coroutine(lambda: self._async_client.get_live_settings())  # type: ignore[union-attr]
 
-    def set_temperature(self, temperature: float, unit: str = "F") -> bool:
+    def set_temperature(
+        self,
+        temperature: float,
+        unit: str = "F",
+        wait_for_ack: bool = False,
+        polling_interval: float = 2.0,
+        polling_timeout: float = 60.0,
+    ) -> bool:
         """Set the target temperature for the spa.
 
         Args:
             temperature: Target temperature
             unit: Temperature unit ('F' or 'C')
+            wait_for_ack: Whether to wait for acknowledgment from the spa
+            polling_interval: Time in seconds between polls when waiting for
+                acknowledgment
+            polling_timeout: Maximum time in seconds to wait for acknowledgment
 
         Returns:
             bool indicating success
@@ -139,10 +150,37 @@ class CalderaClient:
             InvalidParameterError: If temperature is out of valid range
             AuthenticationError: If authentication fails
             ConnectionError: If connection fails
-            SpaControlError: If the API returns an error
+            SpaControlError: If the API returns an error or acknowledgment times out
         """
         return self._run_coroutine(
-            lambda: self._async_client.set_temperature(temperature, unit)  # type: ignore[union-attr]
+            lambda: self._async_client.set_temperature(  # type: ignore[union-attr]
+                temperature, unit, wait_for_ack, polling_interval, polling_timeout
+            )
+        )
+
+    def wait_for_temperature_ack(
+        self,
+        expected_temp: Optional[float] = None,
+        interval: float = 2.0,
+        timeout: float = 60.0,
+    ) -> LiveSettings:
+        """Wait for the spa to acknowledge the temperature setting.
+
+        Args:
+            expected_temp: The expected temperature in Fahrenheit (optional)
+            interval: Time in seconds between polls
+            timeout: Maximum time in seconds to poll before timing out
+
+        Returns:
+            LiveSettings object with the acknowledged temperature
+
+        Raises:
+            SpaControlError: If acknowledgment times out
+        """
+        return self._run_coroutine(
+            lambda: self._async_client.wait_for_temperature_ack(  # type: ignore[union-attr]
+                expected_temp, interval, timeout
+            )
         )
 
     def set_lights(self, state: bool) -> bool:

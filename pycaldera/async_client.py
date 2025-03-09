@@ -1,9 +1,11 @@
 """Async client implementation for Caldera Spa API."""
 
+import asyncio
 import json
 import logging
+import time
 from asyncio import AbstractEventLoop
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Callable, Coroutine, Dict, Optional, Tuple, TypeVar
 
 import aiohttp
 import pydantic
@@ -41,6 +43,9 @@ from .models import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Define a generic type for poll_until
+T = TypeVar("T")
 
 
 class AsyncCalderaClient:
@@ -323,12 +328,23 @@ class AsyncCalderaClient:
             logger.error(f"Failed to get live settings: {str(e)}")
             raise ConnectionError(f"Unexpected error: {str(e)}") from e
 
-    async def set_temperature(self, temperature: float, unit: str = "F") -> bool:
+    async def set_temperature(
+        self,
+        temperature: float,
+        unit: str = "F",
+        wait_for_ack: bool = False,
+        polling_interval: float = 2.0,
+        polling_timeout: float = 60.0,
+    ) -> bool:
         """Set the target temperature for the spa.
 
         Args:
             temperature: Target temperature
             unit: Temperature unit ('F' or 'C')
+            wait_for_ack: Whether to wait for acknowledgment from the spa
+            polling_interval: Time in seconds between polls when waiting for
+                acknowledgment
+            polling_timeout: Maximum time in seconds to wait for acknowledgment
 
         Returns:
             bool indicating success
@@ -337,8 +353,10 @@ class AsyncCalderaClient:
             InvalidParameterError: If temperature is out of valid range
             AuthenticationError: If authentication fails
             ConnectionError: If connection fails
-            SpaControlError: If the API returns an error
+            SpaControlError: If the API returns an error or acknowledgment times out
         """
+        # Initial temperature validation
+        original_temp = temperature
         if unit.upper() == "F":
             if not (MIN_TEMP_F <= temperature <= MAX_TEMP_F):
                 raise InvalidParameterError(
@@ -363,8 +381,8 @@ class AsyncCalderaClient:
 
         logger.debug(
             f"Temperature encoding:\n"
-            f"  Requested: {temperature}°F\n"
-            f"  Current method: {temp_value} (0x{temp_value:04X})\n"
+            f"  Requested: {original_temp}°{unit.upper()} ({temperature}°F)\n"
+            f"  API value: {temp_value} (0x{temp_value:04X})"
         )
 
         try:
@@ -377,9 +395,21 @@ class AsyncCalderaClient:
 
             # Log successful operation
             logger.debug(
-                f"Temperature set successfully to {temperature}°F "
+                f"Temperature set command sent successfully to {temperature}°F "
                 f"(API value: {temp_value})"
             )
+
+            # If requested, wait for acknowledgment from the spa
+            if wait_for_ack:
+                logger.info(
+                    f"Waiting for spa to acknowledge temperature of {temperature}°F"
+                )
+                await self.wait_for_temperature_ack(
+                    expected_temp=temperature,
+                    interval=polling_interval,
+                    timeout=polling_timeout,
+                )
+                logger.info(f"Temperature setting of {temperature}°F confirmed by spa")
 
             return True
         except Exception as e:
@@ -551,3 +581,93 @@ class AsyncCalderaClient:
         except Exception as e:
             logger.error(f"Failed to set spa lock: {str(e)}")
             raise
+
+    async def poll_until(
+        self,
+        get_func: Callable[[], Coroutine[Any, Any, T]],
+        check_func: Callable[[T], bool],
+        interval: float = 1.0,
+        timeout: float = 30.0,
+        error_message: str = "Polling timed out",
+    ) -> T:
+        """Poll a function until a condition is met or timeout is reached.
+
+        Args:
+            get_func: Async function that returns the data to check
+            check_func: Function that checks if the condition is met
+            interval: Time in seconds between polls
+            timeout: Maximum time in seconds to poll before timing out
+            error_message: Error message to use if polling times out
+
+        Returns:
+            The final result from get_func that satisfied check_func
+
+        Raises:
+            SpaControlError: If polling times out before condition is met
+        """
+        start_time = time.time()
+        while True:
+            if time.time() - start_time > timeout:
+                raise SpaControlError(error_message)
+
+            result = await get_func()
+
+            if check_func(result):
+                return result
+
+            # Wait before trying again
+            logger.debug(
+                f"Polling condition not met, waiting {interval}s before retrying"
+            )
+            await asyncio.sleep(interval)
+
+    async def wait_for_temperature_ack(
+        self,
+        expected_temp: Optional[float] = None,
+        interval: float = 2.0,
+        timeout: float = 60.0,
+    ) -> LiveSettings:
+        """Wait for the spa to acknowledge the temperature setting.
+
+        Args:
+            expected_temp: The expected temperature in Fahrenheit (optional)
+            interval: Time in seconds between polls
+            timeout: Maximum time in seconds to poll before timing out
+
+        Returns:
+            LiveSettings object with the acknowledged temperature
+
+        Raises:
+            SpaControlError: If acknowledgment times out
+        """
+        logger.info("Waiting for temperature setting acknowledgment from spa")
+
+        def check_temp_ack(settings: LiveSettings) -> bool:
+            # Check if temperature is acknowledged
+            temp_ack = settings.usr_set_temperature_ack == "True"
+
+            # If expected_temp is provided, also check if the set temperature matches
+            if expected_temp is not None and temp_ack:
+                current_temp = float(settings.ctrl_head_set_temperature)
+                if (
+                    abs(current_temp - expected_temp) > 0.5
+                ):  # Allow 0.5°F difference due to rounding
+                    logger.debug(
+                        f"Temperature acknowledged but doesn't match expected: "
+                        f"got {current_temp}°F, expected {expected_temp}°F"
+                    )
+                    return False
+
+            if temp_ack:
+                logger.info("Temperature setting acknowledged by spa")
+
+            return temp_ack
+
+        error_msg = f"Timed out waiting for temperature acknowledgment after {timeout}s"
+        return await self.poll_until(
+            get_func=self.get_live_settings,
+            check_func=check_temp_ack,
+            interval=interval,
+            timeout=timeout,
+            error_message=error_msg,
+        )
