@@ -14,17 +14,9 @@ class TestCalderaClient(unittest.TestCase):
         """Set up test fixtures."""
         self.client = CalderaClient("test@example.com", "password")
 
-    @patch("pycaldera.client.AsyncCalderaClient")
-    @patch("pycaldera.client.asyncio.new_event_loop")
-    def test_authenticate(self, mock_new_loop, mock_async_client):
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_authenticate(self, mock_run_coroutine):
         """Test authenticate method."""
-        # Setup mocks
-        mock_loop = MagicMock()
-        mock_new_loop.return_value = mock_loop
-
-        mock_instance = MagicMock()
-        mock_async_client.return_value = mock_instance
-
         auth_response = AuthResponse(
             statusCode=200,
             message="Success",
@@ -33,8 +25,8 @@ class TestCalderaClient(unittest.TestCase):
             nTime="123456789",
         )
 
-        # Set up the return value for run_until_complete
-        mock_loop.run_until_complete.return_value = auth_response
+        # Set up the return value for _run_coroutine
+        mock_run_coroutine.return_value = auth_response
 
         # Call the method
         result = self.client.authenticate()
@@ -43,23 +35,14 @@ class TestCalderaClient(unittest.TestCase):
         self.assertEqual(result.statusCode, 200)
         self.assertEqual(result.message, "Success")
 
-        # The implementation should call run_until_complete twice
-        # (once for the method and once for cleanup)
-        self.assertEqual(2, mock_loop.run_until_complete.call_count)
+        # Verify that _run_coroutine was called once
+        mock_run_coroutine.assert_called_once()
 
-    @patch("pycaldera.client.AsyncCalderaClient")
-    @patch("pycaldera.client.asyncio.new_event_loop")
-    def test_set_temperature(self, mock_new_loop, mock_async_client):
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_set_temperature(self, mock_run_coroutine):
         """Test set_temperature method."""
-        # Setup mocks
-        mock_loop = MagicMock()
-        mock_new_loop.return_value = mock_loop
-
-        mock_instance = MagicMock()
-        mock_async_client.return_value = mock_instance
-
-        # Set up the return value for run_until_complete
-        mock_loop.run_until_complete.return_value = True
+        # Set up the return value for _run_coroutine
+        mock_run_coroutine.return_value = True
 
         # Call the method
         result = self.client.set_temperature(100, "F")
@@ -67,23 +50,14 @@ class TestCalderaClient(unittest.TestCase):
         # Verify the result
         self.assertTrue(result)
 
-        # The implementation should call run_until_complete twice
-        # (once for the method and once for cleanup)
-        self.assertEqual(2, mock_loop.run_until_complete.call_count)
+        # Verify that _run_coroutine was called once
+        mock_run_coroutine.assert_called_once()
 
-    @patch("pycaldera.client.AsyncCalderaClient")
-    @patch("pycaldera.client.asyncio.new_event_loop")
-    def test_set_lights(self, mock_new_loop, mock_async_client):
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_set_lights(self, mock_run_coroutine):
         """Test set_lights method."""
-        # Setup mocks
-        mock_loop = MagicMock()
-        mock_new_loop.return_value = mock_loop
-
-        mock_instance = MagicMock()
-        mock_async_client.return_value = mock_instance
-
-        # Set up the return value for run_until_complete
-        mock_loop.run_until_complete.return_value = True
+        # Set up the return value for _run_coroutine
+        mock_run_coroutine.return_value = True
 
         # Call the method
         result = self.client.set_lights(True)
@@ -91,9 +65,8 @@ class TestCalderaClient(unittest.TestCase):
         # Verify the result
         self.assertTrue(result)
 
-        # The implementation should call run_until_complete twice
-        # (once for the method and once for cleanup)
-        self.assertEqual(2, mock_loop.run_until_complete.call_count)
+        # Verify that _run_coroutine was called once
+        mock_run_coroutine.assert_called_once()
 
     @patch("pycaldera.client.CalderaClient.close")
     def test_context_manager(self, mock_close):
@@ -106,22 +79,11 @@ class TestCalderaClient(unittest.TestCase):
         # Verify close was called
         mock_close.assert_called_once()
 
-    @patch("pycaldera.client.AsyncCalderaClient")
-    @patch("pycaldera.client.asyncio.new_event_loop")
-    def test_set_temperature_with_wait(self, mock_new_loop, mock_async_client):
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_set_temperature_with_wait(self, mock_run_coroutine):
         """Test setting temperature with wait for acknowledgment."""
-        # Setup mocks
-        mock_loop = MagicMock()
-        mock_new_loop.return_value = mock_loop
-
-        mock_instance = MagicMock()
-        mock_async_client.return_value = mock_instance
-
-        # Mock the async client to return True for setting temperature
-        mock_instance.set_temperature.return_value = True
-
-        # Set up our return value
-        mock_loop.run_until_complete.return_value = True
+        # Set up the return value for _run_coroutine
+        mock_run_coroutine.return_value = True
 
         # Call the method with wait_for_ack=True
         result = self.client.set_temperature(
@@ -135,30 +97,19 @@ class TestCalderaClient(unittest.TestCase):
         # Verify the result
         self.assertTrue(result)
 
-        # Verify the mocks were called correctly
-        # The 2 call count verifies that run_until_complete is called once
-        # for the operation and once for cleanup
-        self.assertEqual(2, mock_loop.run_until_complete.call_count)
+        # Verify that _run_coroutine was called once
+        mock_run_coroutine.assert_called_once()
 
-    @patch("pycaldera.client.AsyncCalderaClient")
-    @patch("pycaldera.client.asyncio.new_event_loop")
-    def test_wait_for_temperature_ack(self, mock_new_loop, mock_async_client):
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_wait_for_temperature_ack(self, mock_run_coroutine):
         """Test waiting for temperature acknowledgment."""
-        # Setup mocks
-        mock_loop = MagicMock()
-        mock_new_loop.return_value = mock_loop
-
-        mock_instance = MagicMock()
-        mock_async_client.return_value = mock_instance
-
         # Create a mock LiveSettings object to return
         live_settings = MagicMock(spec=LiveSettings)
-        live_settings.usr_set_temperature_ack = "True"
+        live_settings.ctrl_head_water_temperature_ack = "True"
         live_settings.ctrl_head_set_temperature = "100.0"
 
-        # Set up our return value
-        mock_instance.wait_for_temperature_ack.return_value = live_settings
-        mock_loop.run_until_complete.return_value = live_settings
+        # Set up the return value for _run_coroutine
+        mock_run_coroutine.return_value = live_settings
 
         # Call the wait_for_temperature_ack method
         result = self.client.wait_for_temperature_ack(
@@ -168,10 +119,5 @@ class TestCalderaClient(unittest.TestCase):
         # Verify the result
         self.assertEqual(result, live_settings)
 
-        # The lambda function in _run_coroutine will call the method
-        # But in the test environment this doesn't happen as expected
-        # So we just verify that run_until_complete was called
-        self.assertTrue(mock_loop.run_until_complete.called)
-
-        # Verify run_until_complete was called appropriately
-        self.assertEqual(2, mock_loop.run_until_complete.call_count)
+        # Verify that _run_coroutine was called once
+        mock_run_coroutine.assert_called_once()
