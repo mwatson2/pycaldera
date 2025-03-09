@@ -155,17 +155,21 @@ class AsyncCalderaClient:
             if not self._session:
                 raise RuntimeError("Session not initialized")
 
-            logger.debug(f"Authentication response: {json.dumps(data)}")
-
             token = headers.get("Authorization", "")
 
             if not token:
                 raise AuthenticationError("No authentication token received")
 
             self._token = token  # Store just the raw token
+
+            # Create the pydantic object first
+            auth_response = AuthResponse(**data)
+
+            # Log the pydantic object instead of raw data
+            logger.debug(f"Authentication successful: {auth_response}")
             logger.debug(f"Received authentication token: {self._token}")
-            logger.debug("Authentication successful")
-            return AuthResponse(**data)
+
+            return auth_response
 
         except aiohttp.ClientResponseError as e:
             logger.error(f"Authentication failed: {str(e)}")
@@ -244,7 +248,14 @@ class AsyncCalderaClient:
 
             # Now validate with pydantic
             response = SpaStatusResponse(**data)
-            return response.data.responseDto[0]
+
+            # Get the first spa data from the response
+            spa_data = response.data.responseDto[0]
+
+            # Log the pydantic object
+            logger.debug(f"Spa status received: {spa_data}")
+
+            return spa_data
 
         except aiohttp.ClientResponseError as e:
             logger.error(f"Failed to get spa status: {str(e)}")
@@ -279,7 +290,6 @@ class AsyncCalderaClient:
             data, _ = await self._make_request(
                 "GET", "setting/live-spa-settings", params={"hnaNo": self._hna_number}
             )
-            logger.debug(f"Live settings response: {json.dumps(data)}")
 
             # Pre-process the response to parse nested JSON
             if not isinstance(data, dict):
@@ -293,7 +303,13 @@ class AsyncCalderaClient:
             if not response.data.rows:
                 raise SpaControlError("No live settings data in response")
 
-            return response.data.rows[0]
+            # Get the settings from the response
+            live_settings = response.data.rows[0]
+
+            # Log the pydantic object
+            logger.debug(f"Live settings received: {live_settings}")
+
+            return live_settings
 
         except aiohttp.ClientResponseError as e:
             logger.error(f"Failed to get live settings: {str(e)}")
@@ -358,6 +374,13 @@ class AsyncCalderaClient:
                 params={"hnaNo": self._hna_number, "spaTempStatus": 1},
                 json={"param": json.dumps({"usr_set_temperature": str(temp_value)})},
             )
+
+            # Log successful operation
+            logger.debug(
+                f"Temperature set successfully to {temperature}°F "
+                f"(API value: {temp_value})"
+            )
+
             return True
         except Exception as e:
             logger.error(f"Failed to set temperature: {str(e)}")
@@ -390,6 +413,13 @@ class AsyncCalderaClient:
                 params={"hnaNo": self._hna_number},
                 json={"param": json.dumps({"usr_set_mz_light": light_value})},
             )
+
+            # Log successful operation
+            logger.debug(
+                f"Lights set successfully to {'on' if state else 'off'} "
+                f"(API value: {light_value})"
+            )
+
             return True
         except Exception as e:
             logger.error(f"Failed to set lights: {str(e)}")
@@ -429,6 +459,14 @@ class AsyncCalderaClient:
                 params={"hnaNo": self._hna_number},
                 json={"param": json.dumps({param_name: str(speed)})},
             )
+
+            # Log successful operation
+            speed_name = {0: "off", 1: "low", 2: "high"}.get(speed, str(speed))
+            logger.debug(
+                f"Pump {pump_number} set successfully to {speed_name} "
+                f"(API value: {speed})"
+            )
+
             return True
         except Exception as e:
             logger.error(f"Failed to set pump: {str(e)}")
@@ -454,20 +492,21 @@ class AsyncCalderaClient:
         logger.info(f"Setting temperature lock to {'locked' if locked else 'unlocked'}")
 
         try:
+            lock_value = LOCK_ENABLED if locked else LOCK_DISABLED
             await self._make_request(
                 "POST",
                 "setting/send-my-spa-settings-to-thingWorx",
                 params={"hnaNo": self._hna_number},
-                json={
-                    "param": json.dumps(
-                        {
-                            "usr_set_temp_lock_state": (
-                                LOCK_ENABLED if locked else LOCK_DISABLED
-                            )
-                        }
-                    )
-                },
+                json={"param": json.dumps({"usr_set_temp_lock_state": lock_value})},
             )
+
+            # Log successful operation
+            state_text = "locked" if locked else "unlocked"
+            logger.debug(
+                f"Temperature lock set successfully to {state_text} "
+                f"(API value: {lock_value})"
+            )
+
             return True
         except Exception as e:
             logger.error(f"Failed to set temperature lock: {str(e)}")
@@ -493,20 +532,21 @@ class AsyncCalderaClient:
         logger.info(f"Setting spa lock to {'locked' if locked else 'unlocked'}")
 
         try:
+            lock_value = LOCK_ENABLED if locked else LOCK_DISABLED
             await self._make_request(
                 "POST",
                 "setting/send-my-spa-settings-to-thingWorx",
                 params={"hnaNo": self._hna_number},
-                json={
-                    "param": json.dumps(
-                        {
-                            "usr_set_spa_lock_state": (
-                                LOCK_ENABLED if locked else LOCK_DISABLED
-                            )
-                        }
-                    )
-                },
+                json={"param": json.dumps({"usr_set_spa_lock_state": lock_value})},
             )
+
+            # Log successful operation
+            state_text = "locked" if locked else "unlocked"
+            logger.debug(
+                f"Spa lock set successfully to {state_text} "
+                f"(API value: {lock_value})"
+            )
+
             return True
         except Exception as e:
             logger.error(f"Failed to set spa lock: {str(e)}")
