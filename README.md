@@ -10,6 +10,8 @@ pip install pycaldera
 
 ## Usage
 
+### Asynchronous API
+
 ```python
 import asyncio
 from pycaldera import AsyncCalderaClient, PUMP_OFF, PUMP_LOW, PUMP_HIGH
@@ -34,11 +36,35 @@ async def main():
 asyncio.run(main())
 ```
 
+### Synchronous API
+
+For simpler use cases, a synchronous wrapper is also available:
+
+```python
+from pycaldera import CalderaClient, PUMP_OFF, PUMP_LOW, PUMP_HIGH
+
+with CalderaClient("email@example.com", "password") as spa:
+    # Get current spa status
+    status = spa.get_spa_status()
+    print(f"Current temperature: {status.ctrl_head_water_temperature}°F")
+
+    # Get detailed live settings
+    settings = spa.get_live_settings()
+    print(f"Target temperature: {settings.ctrl_head_set_temperature}°F")
+
+    # Control the spa
+    spa.set_temperature(102)  # Set temperature to 102°F
+    spa.set_pump(1, PUMP_HIGH)  # Set pump 1 to high speed
+    spa.set_lights(True)  # Turn on the lights
+```
+
+Both clients provide identical functionality, with the synchronous client simply wrapping the async one for convenience.
+
 ## API Reference
 
 ### AsyncCalderaClient
 
-Main client class for interacting with the spa. All operations must be performed within an async context manager:
+The main async client class for interacting with the spa. All operations must be performed within an async context manager:
 
 ```python
 async with AsyncCalderaClient(
@@ -50,6 +76,23 @@ async with AsyncCalderaClient(
     # All spa operations must be inside this block
     await spa.get_spa_status()
     await spa.set_temperature(102)
+    # etc...
+```
+
+### CalderaClient
+
+A synchronous wrapper around AsyncCalderaClient that provides the same functionality without requiring async/await:
+
+```python
+with CalderaClient(
+    email="email@example.com",
+    password="password",
+    timeout=10.0,  # Optional: request timeout in seconds
+    debug=False,  # Optional: enable debug logging
+) as spa:
+    # All spa operations can be called synchronously
+    spa.get_spa_status()
+    spa.set_temperature(102)
     # etc...
 ```
 
@@ -66,11 +109,33 @@ All operations can raise these base exceptions:
 async with spa as client:
     # Set temperature (80-104°F or 26.5-40°C)
     try:
+        # Basic temperature setting
         await client.set_temperature(102)  # Fahrenheit
         await client.set_temperature(39, "C")  # Celsius
+
+        # Wait for spa to acknowledge the temperature change
+        await client.set_temperature(102, wait_for_ack=True)
+
+        # Control polling behavior when waiting for acknowledgment
+        await client.set_temperature(
+            102,
+            wait_for_ack=True,
+            polling_interval=5.0,  # Check every 5 seconds
+            polling_timeout=120.0,  # Time out after 2 minutes
+        )
+
+        # Manually wait for temperature acknowledgment
+        settings = await client.wait_for_temperature_ack(
+            expected_temp=102,  # Expected temperature in Fahrenheit
+            interval=5.0,  # Check every 5 seconds
+            timeout=120.0,  # Time out after 2 minutes
+        )
     except InvalidParameterError:
         # Raised when temperature is outside valid range
         # (80-104°F or 26.5-40°C)
+        pass
+    except SpaControlError:
+        # Raised when polling times out waiting for acknowledgment
         pass
 ```
 
