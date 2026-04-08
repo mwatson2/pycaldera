@@ -1,3 +1,4 @@
-pytest
-pytest-cov
-pytest-flake8
+pytest>=7.0.0
+pytest-aiohttp>=1.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
