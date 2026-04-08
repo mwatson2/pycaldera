@@ -21,7 +21,7 @@ async def main():
     async with AsyncCalderaClient("email@example.com", "password") as spa:
         # Get current spa status
         status = await spa.get_spa_status()
-        print(f"Current temperature: {status.ctrl_head_water_temperature}°F")
+        print(f"Current temperature: {status.water_temperature}°F")
 
         # Get detailed live settings
         settings = await spa.get_live_settings()
@@ -46,7 +46,7 @@ from pycaldera import CalderaClient, PUMP_OFF, PUMP_LOW, PUMP_HIGH
 with CalderaClient("email@example.com", "password") as spa:
     # Get current spa status
     status = spa.get_spa_status()
-    print(f"Current temperature: {status.ctrl_head_water_temperature}°F")
+    print(f"Current temperature: {status.water_temperature}°F")
 
     # Get detailed live settings
     settings = spa.get_live_settings()

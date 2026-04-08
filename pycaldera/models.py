@@ -242,6 +242,32 @@ class SpaResponseDato(BaseModel):
     emailAddress: str
     userTempratureUnit: bool
 
+    @property
+    def water_temperature(self) -> Optional[float]:
+        """Current water temperature reported by the spa.
+
+        The reading lives inside the embedded ThingWorx live-settings
+        payload at ``isConnectedData.liveSettings.rows[0]``. Returns
+        ``None`` if the spa has not yet reported a row (e.g. when
+        offline or mid-handshake).
+        """
+        rows = self.isConnectedData.liveSettings.rows
+        if not rows:
+            return None
+        return rows[0].ctrl_head_water_temperature
+
+    @property
+    def set_temperature(self) -> Optional[float]:
+        """Target temperature setpoint reported by the spa.
+
+        Returns ``None`` if no live-settings row is available. See
+        :attr:`water_temperature` for the source path.
+        """
+        rows = self.isConnectedData.liveSettings.rows
+        if not rows:
+            return None
+        return rows[0].ctrl_head_set_temperature
+
 
 class ResponseData(BaseModel):
     """Data field for spa status response."""
