@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from pycaldera.client import CalderaClient
-from pycaldera.models import AuthResponse, LiveSettings
+from pycaldera.models import AuthResponse, LiveSettings, SpaResponseDato
 
 
 class TestCalderaClient(unittest.TestCase):
@@ -99,6 +99,82 @@ class TestCalderaClient(unittest.TestCase):
 
         # Verify that _run_coroutine was called once
         mock_run_coroutine.assert_called_once()
+
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_get_spa_status(self, mock_run_coroutine):
+        """Test get_spa_status method."""
+        spa_response = MagicMock(spec=SpaResponseDato)
+        mock_run_coroutine.return_value = spa_response
+
+        result = self.client.get_spa_status()
+
+        self.assertEqual(result, spa_response)
+        mock_run_coroutine.assert_called_once()
+
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_get_live_settings(self, mock_run_coroutine):
+        """Test get_live_settings method."""
+        live_settings = MagicMock(spec=LiveSettings)
+        mock_run_coroutine.return_value = live_settings
+
+        result = self.client.get_live_settings()
+
+        self.assertEqual(result, live_settings)
+        mock_run_coroutine.assert_called_once()
+
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_set_pump(self, mock_run_coroutine):
+        """Test set_pump method."""
+        mock_run_coroutine.return_value = True
+
+        result = self.client.set_pump(1, 2)
+
+        self.assertTrue(result)
+        mock_run_coroutine.assert_called_once()
+
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_set_temp_lock(self, mock_run_coroutine):
+        """Test set_temp_lock method."""
+        mock_run_coroutine.return_value = True
+
+        result = self.client.set_temp_lock(True)
+
+        self.assertTrue(result)
+        mock_run_coroutine.assert_called_once()
+
+    @patch("pycaldera.client.CalderaClient._run_coroutine")
+    def test_set_spa_lock(self, mock_run_coroutine):
+        """Test set_spa_lock method."""
+        mock_run_coroutine.return_value = True
+
+        result = self.client.set_spa_lock(False)
+
+        self.assertTrue(result)
+        mock_run_coroutine.assert_called_once()
+
+    def test_close_without_init(self):
+        """Closing a client that was never used is a no-op."""
+        # _async_client and _loop are still None — close() must not raise.
+        self.client.close()
+        self.assertIsNone(self.client._async_client)
+        self.assertIsNone(self.client._loop)
+
+    def test_close_with_initialized_client(self):
+        """close() tears down the loop and async client when present."""
+        mock_loop = MagicMock()
+        mock_async_client = MagicMock()
+        # Override __aexit__ with a plain Mock so it doesn't produce an
+        # un-awaited coroutine when called.
+        mock_async_client.__aexit__ = MagicMock(return_value=None)
+        self.client._loop = mock_loop
+        self.client._async_client = mock_async_client
+
+        self.client.close()
+
+        mock_loop.run_until_complete.assert_called_once()
+        mock_loop.close.assert_called_once()
+        self.assertIsNone(self.client._loop)
+        self.assertIsNone(self.client._async_client)
 
     @patch("pycaldera.client.CalderaClient._run_coroutine")
     def test_wait_for_temperature_ack(self, mock_run_coroutine):
