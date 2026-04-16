@@ -25,6 +25,7 @@ from .const import (
     MAX_TEMP_F,
     MIN_TEMP_C,
     MIN_TEMP_F,
+    _PUMP_API_OFFSET,
 )
 from .exceptions import (
     AuthenticationError,
@@ -489,7 +490,7 @@ class AsyncCalderaClient:
                 "POST",
                 "setting/send-my-spa-settings-to-thingWorx",
                 params={"hnaNo": self._hna_number},
-                json={"param": json.dumps({param_name: str(speed)})},
+                json={"param": json.dumps({param_name: str(speed + _PUMP_API_OFFSET)})},
             )
 
             # Log successful operation

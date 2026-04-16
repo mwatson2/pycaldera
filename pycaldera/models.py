@@ -1,8 +1,23 @@
 """Data models for Caldera Spa API."""
 
+from __future__ import annotations
+
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
+
+from .const import PUMP_HIGH, PUMP_LOW, PUMP_OFF, _PUMP_API_OFFSET
+
+
+@dataclass
+class PumpInfo:
+    """Describes a pump and its capabilities."""
+
+    number: int
+    exists: bool
+    speed_count: int
+    available_speeds: list[int] = field(default_factory=list)
 
 
 class AuthResponse(BaseModel):
@@ -80,6 +95,11 @@ class LiveSettings(BaseModel):
     description: str
     thingTemplate: str
     tags: List[Dict[str, str]]
+
+    def get_pump_speed(self, pump_number: int) -> int:
+        """Return the current pump speed as a public constant (PUMP_OFF/LOW/HIGH)."""
+        raw = getattr(self, f"usr_set_pump{pump_number}_speed", "1")
+        return int(raw) - _PUMP_API_OFFSET
 
 
 class LiveSettingsFieldDefinition(BaseModel):
@@ -267,6 +287,28 @@ class SpaResponseDato(BaseModel):
         if not rows:
             return None
         return rows[0].ctrl_head_set_temperature
+
+    @property
+    def pumps(self) -> list[PumpInfo]:
+        """Return pump configurations parsed from the spa's JET_PUMPS settings."""
+        jet_pumps = self.spaSettings.thingWorxData.JET_PUMPS
+        result: list[PumpInfo] = []
+        for i in range(1, 4):
+            raw = getattr(jet_pumps, f"Jet_Pump_{i}")
+            if raw == "N":
+                continue
+            speed_count = int(raw)
+            speeds = [PUMP_OFF]
+            if speed_count >= 2:
+                speeds.append(PUMP_LOW)
+            speeds.append(PUMP_HIGH)
+            result.append(PumpInfo(
+                number=i,
+                exists=True,
+                speed_count=speed_count,
+                available_speeds=speeds,
+            ))
+        return result
 
 
 class ResponseData(BaseModel):

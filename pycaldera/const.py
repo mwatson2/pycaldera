@@ -8,10 +8,13 @@ AUTH_DEVICE_TYPE = "IOS"
 AUTH_OS_TYPE = "17.4.1"
 AUTH_DEVICE_TOKEN = "dummy_token:APA91bDummy0123456789"
 
-# Pump speed constants
+# Pump speed constants (public API values)
 PUMP_OFF = 0
 PUMP_LOW = 1
 PUMP_HIGH = 2
+
+# Internal API wire values (offset by 1 from public constants)
+_PUMP_API_OFFSET = 1
 
 # Temperature constraints
 MIN_TEMP_F = 80

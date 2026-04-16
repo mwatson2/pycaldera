@@ -11,12 +11,13 @@ from .exceptions import (
     InvalidParameterError,
     SpaControlError,
 )
-from .models import LiveSettings
+from .models import LiveSettings, PumpInfo
 
 __all__ = [
     "AsyncCalderaClient",
     "CalderaClient",
     "LiveSettings",
+    "PumpInfo",
     "PUMP_OFF",
     "PUMP_LOW",
     "PUMP_HIGH",
