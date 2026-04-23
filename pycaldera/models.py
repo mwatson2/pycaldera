@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
-from .const import PUMP_HIGH, PUMP_LOW, PUMP_OFF, _PUMP_API_OFFSET
+from .const import _PUMP_API_OFFSET, PUMP_HIGH, PUMP_LOW, PUMP_OFF
 
 
 @dataclass
@@ -302,12 +302,14 @@ class SpaResponseDato(BaseModel):
             if speed_count >= 2:
                 speeds.append(PUMP_LOW)
             speeds.append(PUMP_HIGH)
-            result.append(PumpInfo(
-                number=i,
-                exists=True,
-                speed_count=speed_count,
-                available_speeds=speeds,
-            ))
+            result.append(
+                PumpInfo(
+                    number=i,
+                    exists=True,
+                    speed_count=speed_count,
+                    available_speeds=speeds,
+                )
+            )
         return result
 
 

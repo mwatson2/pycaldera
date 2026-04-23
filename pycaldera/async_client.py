@@ -12,6 +12,7 @@ import pydantic
 from aiohttp import ClientError, ClientSession
 
 from .const import (
+    _PUMP_API_OFFSET,
     API_BASE_URL,
     AUTH_DEVICE_TOKEN,
     AUTH_DEVICE_TYPE,
@@ -25,7 +26,6 @@ from .const import (
     MAX_TEMP_F,
     MIN_TEMP_C,
     MIN_TEMP_F,
-    _PUMP_API_OFFSET,
 )
 from .exceptions import (
     AuthenticationError,

@@ -51,7 +51,7 @@ if extras_require:
 # is being run during the `python setup.py install` step, before requirements
 # are installed.
 # https://packaging.python.org/guides/single-sourcing-package-version/
-meta: dict[str, Any] = {}
+meta: "dict[str, Any]" = {}
 exec(read("pycaldera/__meta__.py"), meta)
 
 
