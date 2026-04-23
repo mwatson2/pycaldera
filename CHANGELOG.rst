@@ -11,6 +11,39 @@ The format is based on `Keep a Changelog`_, and this project adheres to `Semanti
 Categories for changes are: Added, Changed, Deprecated, Removed, Fixed, Security.
 
 
+Version `0.1.3 <https://github.com/mwatson2/pycaldera/tree/v0.1.3>`__
+---------------------------------------------------------------------
+
+Release date: 2026-04-22.
+
+Changed
+~~~~~~~
+- ``DEFAULT_TIMEOUT`` raised from 10 to 30 seconds. The Caldera cloud API
+  periodically returns in 10+ seconds under normal conditions; the old
+  timeout caused ~5% of requests to fail with ``ConnectionError`` and
+  flipped downstream Home Assistant entities to unavailable and back every
+  few minutes.
+
+
+Version `0.1.2 <https://github.com/mwatson2/pycaldera/tree/v0.1.2>`__
+---------------------------------------------------------------------
+
+Release date: 2026-04-15.
+
+Fixed
+~~~~~
+- Off-by-one pump speed encoding. The Caldera API uses wire values
+  1=off, 2=low, 3=high, but the public ``PUMP_OFF/LOW/HIGH`` constants
+  are 0/1/2. ``set_pump`` now translates internally via a private
+  ``_PUMP_API_OFFSET`` so the public API values match user expectations.
+
+Added
+~~~~~
+- ``LiveSettings.get_pump_speed()`` helper.
+- ``SpaResponseDato.pumps`` property, which parses the spa's ``JET_PUMPS``
+  configuration.
+
+
 Version `0.1.1 <https://github.com/mwatson2/pycaldera/tree/v0.1.1>`__
 ---------------------------------------------------------------------
 

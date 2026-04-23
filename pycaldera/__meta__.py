@@ -4,7 +4,7 @@ name = "pycaldera"
 path = name.lower().replace("-", "_").replace(" ", "_")
 # Your version number should follow https://python.org/dev/peps/pep-0440 and
 # https://semver.org
-version = "0.1.2"
+version = "0.1.3"
 __version__ = version
 author = "Mark Watson"
 author_email = "markwatson@cantab.net"

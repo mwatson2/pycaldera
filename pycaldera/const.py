@@ -34,5 +34,11 @@ LOCK_ENABLED = "2"
 TEMP_SCALE = 128  # 1 degree F = 128 units in API value
 MAX_TEMP_VALUE = 65535  # Maximum temperature value (104°F)
 
-# Default request timeout
-DEFAULT_TIMEOUT = 10.0
+# Default request timeout.
+# The Caldera cloud API is occasionally slow: most requests complete in
+# well under a second, but 10+ second responses are not unusual. A tight
+# timeout manifests as spurious UpdateFailed cycles in downstream
+# integrations, which flips every entity on a spa to unavailable and back
+# every few minutes. 30 seconds gives enough headroom for the slow tail
+# while still failing fast on a real outage.
+DEFAULT_TIMEOUT = 30.0
