@@ -1,0 +1,657 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pycaldera.models &#8212; pycaldera 0.1.3 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/rtd_sphinx_search.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/js/rtd_search_config.js"></script>
+    <script src="../../_static/js/rtd_sphinx_search.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pycaldera/models';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pycaldera 0.1.3 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../packages/modules.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../packages/pycaldera.html">pycaldera package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../packages/pycaldera.async_client.html">pycaldera.async_client module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../packages/pycaldera.client.html">pycaldera.client module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../packages/pycaldera.const.html">pycaldera.const module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../packages/pycaldera.exceptions.html">pycaldera.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../packages/pycaldera.models.html">pycaldera.models module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../py-modindex.html">Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <h1>Source code for pycaldera.models</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Data models for Caldera Spa API.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.const</span><span class="w"> </span><span class="kn">import</span> <span class="n">_PUMP_API_OFFSET</span><span class="p">,</span> <span class="n">PUMP_HIGH</span><span class="p">,</span> <span class="n">PUMP_LOW</span><span class="p">,</span> <span class="n">PUMP_OFF</span>
+
+
+<div class="viewcode-block" id="PumpInfo"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.PumpInfo">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PumpInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Describes a pump and its capabilities.&quot;&quot;&quot;</span>
+
+    <span class="n">number</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">exists</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">speed_count</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">available_speeds</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AuthResponse"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.AuthResponse">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">AuthResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Response from authentication endpoint.&quot;&quot;&quot;</span>
+
+    <span class="n">statusCode</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span>
+    <span class="n">timeStamp</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">nTime</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+<div class="viewcode-block" id="LiveSettings"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LiveSettings">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LiveSettings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Live settings from the spa ThingWorx system.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Temperature settings</span>
+    <span class="n">ctrl_head_water_temperature</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">ctrl_head_set_temperature</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">usr_set_temperature</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_temperature_ack</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">ctrl_head_water_temperature_ack</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">temp_diff</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">feature_configuration_degree_celcius</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Pump settings</span>
+    <span class="n">usr_set_pump1_speed</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_pump2_speed</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_pump3_speed</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_blower</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_heat_pump</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Light settings</span>
+    <span class="n">usr_set_light_state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_mz_light</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_mz_ack</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Lock states</span>
+    <span class="n">usr_set_temp_lock_state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_spa_lock_state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_clean_lock_state</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Filter and cleaning</span>
+    <span class="n">filter_time_1</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">filter_time_2</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_clean_cycle</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_stm_state</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Audio settings</span>
+    <span class="n">audio_power</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">audio_source_selection</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_audio_data</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_audio_ack</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># System status</span>
+    <span class="n">mz_system_status</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">hawk_status_econ</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">g3_level2_errors</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">g3_clrmtr_test_data</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lls_power_and_ready_ace_err</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_system_reset</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Usage tracking</span>
+    <span class="n">spa_usage</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_spa_usage</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">salline_test</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Menu entries</span>
+    <span class="n">usr_set_tanas_menu_entry</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_tanas_menu_entry_ack</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_tanas_menu_entry_test</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">usr_set_tanas_menu_entry_boost</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="c1"># Metadata</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">thingTemplate</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+
+<div class="viewcode-block" id="LiveSettings.get_pump_speed"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LiveSettings.get_pump_speed">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_pump_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the current pump speed as a public constant (PUMP_OFF/LOW/HIGH).&quot;&quot;&quot;</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;usr_set_pump</span><span class="si">{</span><span class="n">pump_number</span><span class="si">}</span><span class="s2">_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span> <span class="o">-</span> <span class="n">_PUMP_API_OFFSET</span></div></div>
+
+
+<div class="viewcode-block" id="LiveSettingsFieldDefinition"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LiveSettingsFieldDefinition">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LiveSettingsFieldDefinition</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Definition of a field in live settings.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">baseType</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">ordinal</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">aspects</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LiveSettingsDataShape"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LiveSettingsDataShape">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LiveSettingsDataShape</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Shape of the live settings data.&quot;&quot;&quot;</span>
+
+    <span class="n">fieldDefinitions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LiveSettingsFieldDefinition</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LiveSettingsData"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LiveSettingsData">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LiveSettingsData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parsed live settings data structure.&quot;&quot;&quot;</span>
+
+    <span class="n">dataShape</span><span class="p">:</span> <span class="n">LiveSettingsDataShape</span>
+    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LiveSettings</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LiveSettingsResponse"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LiveSettingsResponse">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LiveSettingsResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Response from the live settings endpoint.&quot;&quot;&quot;</span>
+
+    <span class="n">statusCode</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">LiveSettingsData</span>
+    <span class="n">oldUserData</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">timeStamp</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">nTime</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+<div class="viewcode-block" id="SpaDetails"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.SpaDetails">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpaDetails</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Details about a specific spa model.&quot;&quot;&quot;</span>
+
+    <span class="n">Brand</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Series</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Model</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+<div class="viewcode-block" id="LightSettings"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.LightSettings">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LightSettings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Light configuration for the spa.&quot;&quot;&quot;</span>
+
+    <span class="n">Lights</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">Bartop</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">Dimming</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Underwater_Main_Light</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">Water_Feature</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">Lighting_Type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Exterior_Light</span><span class="p">:</span> <span class="nb">bool</span></div>
+
+
+<div class="viewcode-block" id="JetPumps"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.JetPumps">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">JetPumps</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration of jet pumps.&quot;&quot;&quot;</span>
+
+    <span class="n">Jet_Pump_1</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Jet_Pump_2</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Jet_Pump_3</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+<div class="viewcode-block" id="OptionalFeatures"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.OptionalFeatures">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">OptionalFeatures</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional spa features.&quot;&quot;&quot;</span>
+
+    <span class="n">Audio</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">CoolZoneTM</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">FreshWater_Salt_SystemTM</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;FreshWater Salt SystemTM&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpaConfiguration"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.SpaConfiguration">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpaConfiguration</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete spa configuration.&quot;&quot;&quot;</span>
+
+    <span class="n">Control_Box</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;Control Box&quot;</span><span class="p">)</span>
+    <span class="n">Circulation_Pump</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;Circulation Pump&quot;</span><span class="p">)</span>
+    <span class="n">SPA_Details</span><span class="p">:</span> <span class="n">SpaDetails</span>
+    <span class="n">JET_PUMPS</span><span class="p">:</span> <span class="n">JetPumps</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;JET PUMPS&quot;</span><span class="p">)</span>
+    <span class="n">Summer_Timer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;Summer_Timer&quot;</span><span class="p">)</span>
+    <span class="n">Lights</span><span class="p">:</span> <span class="n">LightSettings</span>
+    <span class="n">OPTIONAL_FEATURES</span><span class="p">:</span> <span class="n">OptionalFeatures</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;OPTIONAL FEATURES&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SpaSettings"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.SpaSettings">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpaSettings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Settings configuration for the spa.&quot;&quot;&quot;</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">thingWorxData</span><span class="p">:</span> <span class="n">SpaConfiguration</span>  <span class="c1"># Changed from str to SpaConfiguration</span>
+    <span class="n">tempLock</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">spaLock</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">filterStatus</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">cleanUpCycle</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">summerTimer</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">units</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">spaEmailNotification</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">promotionEmailNotification</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">spaPushNotification</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">createdAt</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">updatedAt</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">userTempratureUnit</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">promotionPushNotification</span><span class="p">:</span> <span class="nb">bool</span></div>
+
+
+<div class="viewcode-block" id="DeviceConnectionRow"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.DeviceConnectionRow">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">DeviceConnectionRow</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single row of device connection data.&quot;&quot;&quot;</span>
+
+    <span class="n">result</span><span class="p">:</span> <span class="nb">bool</span></div>
+
+
+<div class="viewcode-block" id="ThingWorxResponse"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.ThingWorxResponse">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">ThingWorxResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generic ThingWorx response structure.&quot;&quot;&quot;</span>
+
+    <span class="n">dataShape</span><span class="p">:</span> <span class="n">Dict</span>  <span class="c1"># Keep as Dict since it&#39;s metadata we don&#39;t need</span>
+    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span></div>
+
+
+<div class="viewcode-block" id="ThingWorxLiveSettings"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.ThingWorxLiveSettings">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">ThingWorxLiveSettings</span><span class="p">(</span><span class="n">ThingWorxResponse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Live settings from ThingWorx system.&quot;&quot;&quot;</span>
+
+    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LiveSettings</span><span class="p">]</span>  <span class="c1"># Override rows type for live settings</span></div>
+
+
+<div class="viewcode-block" id="ThingWorxDeviceConnection"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.ThingWorxDeviceConnection">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">ThingWorxDeviceConnection</span><span class="p">(</span><span class="n">ThingWorxResponse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Device connection status from ThingWorx system.&quot;&quot;&quot;</span>
+
+    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DeviceConnectionRow</span><span class="p">]</span>  <span class="c1"># Override rows type for device connection</span></div>
+
+
+<div class="viewcode-block" id="IsConnectedData"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.IsConnectedData">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">IsConnectedData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connection status data for the spa.&quot;&quot;&quot;</span>
+
+    <span class="n">liveSettings</span><span class="p">:</span> <span class="n">ThingWorxLiveSettings</span>
+    <span class="n">isDeviceConnected</span><span class="p">:</span> <span class="n">ThingWorxDeviceConnection</span></div>
+
+
+<div class="viewcode-block" id="SpaResponseDato"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.SpaResponseDato">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpaResponseDato</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Individual spa response data.&quot;&quot;&quot;</span>
+
+    <span class="n">spaId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">spaName</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">spaSerialNumber</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">hnaNumber</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">snaNumber</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">postalCode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">spaSettings</span><span class="p">:</span> <span class="n">SpaSettings</span>
+    <span class="n">spaTempStatus</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">installationDate</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">spaOwnerStatus</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">invitationMailStatus</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">isConnectedData</span><span class="p">:</span> <span class="n">IsConnectedData</span>
+    <span class="n">userId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">firstName</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lastName</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">emailAddress</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">userTempratureUnit</span><span class="p">:</span> <span class="nb">bool</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">water_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Current water temperature reported by the spa.</span>
+
+<span class="sd">        The reading lives inside the embedded ThingWorx live-settings</span>
+<span class="sd">        payload at ``isConnectedData.liveSettings.rows[0]``. Returns</span>
+<span class="sd">        ``None`` if the spa has not yet reported a row (e.g. when</span>
+<span class="sd">        offline or mid-handshake).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">isConnectedData</span><span class="o">.</span><span class="n">liveSettings</span><span class="o">.</span><span class="n">rows</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ctrl_head_water_temperature</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Target temperature setpoint reported by the spa.</span>
+
+<span class="sd">        Returns ``None`` if no live-settings row is available. See</span>
+<span class="sd">        :attr:`water_temperature` for the source path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">isConnectedData</span><span class="o">.</span><span class="n">liveSettings</span><span class="o">.</span><span class="n">rows</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ctrl_head_set_temperature</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pumps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">PumpInfo</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return pump configurations parsed from the spa&#39;s JET_PUMPS settings.&quot;&quot;&quot;</span>
+        <span class="n">jet_pumps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spaSettings</span><span class="o">.</span><span class="n">thingWorxData</span><span class="o">.</span><span class="n">JET_PUMPS</span>
+        <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PumpInfo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="n">raw</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">jet_pumps</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Jet_Pump_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">raw</span> <span class="o">==</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">speed_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+            <span class="n">speeds</span> <span class="o">=</span> <span class="p">[</span><span class="n">PUMP_OFF</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">speed_count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">speeds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PUMP_LOW</span><span class="p">)</span>
+            <span class="n">speeds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PUMP_HIGH</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">PumpInfo</span><span class="p">(</span>
+                    <span class="n">number</span><span class="o">=</span><span class="n">i</span><span class="p">,</span>
+                    <span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">speed_count</span><span class="o">=</span><span class="n">speed_count</span><span class="p">,</span>
+                    <span class="n">available_speeds</span><span class="o">=</span><span class="n">speeds</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="ResponseData"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.ResponseData">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">ResponseData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Data field for spa status response.&quot;&quot;&quot;</span>
+
+    <span class="n">responseDto</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SpaResponseDato</span><span class="p">]</span>
+    <span class="n">unReadNotificationCount</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+<div class="viewcode-block" id="SpaStatusResponse"><a class="viewcode-back" href="../../packages/pycaldera.models.html#pycaldera.SpaStatusResponse">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpaStatusResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete response from spa status endpoint.&quot;&quot;&quot;</span>
+
+    <span class="n">statusCode</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">ResponseData</span>
+    <span class="n">oldUserData</span><span class="p">:</span> <span class="n">List</span>
+    <span class="n">timeStamp</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">nTime</span><span class="p">:</span> <span class="nb">str</span></div>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Watson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Mark Watson.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
